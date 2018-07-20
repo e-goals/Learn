@@ -43,15 +43,7 @@
     long counter = PreciseCounter.Counter;
     decimal timetaken = PreciseCounter.TimeSpan((long)HttpContext.Current.Items["RequestCounter"], counter, TimeUnit.MilliSecond);
     var log = new EasyGoal.Log(decimal.Round(timetaken, 3));
-    bool result = log.Insert();
-    if (result)
-    {
-      Response.Write("Log Success!");
-    }
-    else
-    {
-      Response.Write("Log Failure!");
-    }
+    log.Insert();
   }
 
   void Application_PreSendRequestHeaders(object sender, EventArgs e)

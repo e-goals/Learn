@@ -3,6 +3,9 @@ using System.Web;
 
 public partial class Error : System.Web.UI.Page
 {
+    protected int statusCode = 200;
+    protected string statusText = "OK";
+
     protected void Page_Load(object sender, EventArgs e)
     {
         var lastError = Server.GetLastError();
@@ -59,7 +62,8 @@ public partial class Error : System.Web.UI.Page
                 int errorCode = httpError.GetHttpCode();
                 Server.ClearError();
                 Response.StatusCode = errorCode;
-                Response.Write(string.Format("{0},{1}", errorCode, Response.StatusDescription));
+                this.statusCode = errorCode;
+                this.statusText = Response.StatusDescription;
             }
         }
 

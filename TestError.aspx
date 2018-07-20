@@ -5,14 +5,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title></title>
+  <title>测试错误</title>
 </head>
 <body>
   <form id="_form" runat="server">
     <div>
-      <span>点击按钮将计算 100/0 </span>
-      <asp:Button ID="Button_Compute" runat="server" Text="Button" OnClick="Button_Compute_Click" />
-      <asp:Label ID="Label_Result" runat="server" Text="Label"></asp:Label>
+      <asp:Button ID="Button_Compute" runat="server" Text="100 / 0 = ???" OnClick="Button_Compute_Click" />
+    </div>
+    <div>
+      <a href="page1234567890.aspx" target="_self">打开一个不存在的页面</a>
     </div>
   </form>
 </body>
