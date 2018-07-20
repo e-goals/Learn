@@ -2,36 +2,34 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web;
 
 namespace EasyGoal
 {
     public class Log
     {
-        private static System.Web.HttpContext Current
+        private static HttpContext Current
+        {
+            get { return HttpContext.Current; }
+        }
+
+        private static HttpRequest Request
         {
             get
             {
-                return System.Web.HttpContext.Current;
+                if (HttpContext.Current == null)
+                    throw new Exception("System.Web.HttpContext.Current is NULL.");
+                return HttpContext.Current.Request;
             }
         }
 
-        private static System.Web.HttpRequest Request
+        private static HttpResponse Response
         {
             get
             {
-                if (System.Web.HttpContext.Current == null)
-                    throw new System.Exception("System.Web.HttpContext.Current is NULL.");
-                return System.Web.HttpContext.Current.Request;
-            }
-        }
-
-        private static System.Web.HttpResponse Response
-        {
-            get
-            {
-                if (System.Web.HttpContext.Current == null)
-                    throw new System.Exception("System.Web.HttpContext.Current is NULL.");
-                return System.Web.HttpContext.Current.Response;
+                if (HttpContext.Current == null)
+                    throw new Exception("System.Web.HttpContext.Current is NULL.");
+                return HttpContext.Current.Response;
             }
         }
 
@@ -64,12 +62,6 @@ namespace EasyGoal
         {
             get { return this.method; }
             set { this.method = value; }
-        }
-        private string screen;
-        public string Screen
-        {
-            get { return this.screen; }
-            set { this.screen = value; }
         }
         private string filePath;
         public string FilePath
@@ -125,17 +117,17 @@ namespace EasyGoal
             get { return this.httpXFF; }
             set { this.httpXFF = value; }
         }
-        private int statusC;
+        private int statusCode;
         public int StatusCode
         {
-            get { return this.statusC; }
-            set { this.statusC = value; }
+            get { return this.statusCode; }
+            set { this.statusCode = value; }
         }
-        private string statusD;
-        public string StatusDescription
+        private string statusText;
+        public string StatusText
         {
-            get { return this.statusD; }
-            set { this.statusD = value; }
+            get { return this.statusText; }
+            set { this.statusText = value; }
         }
 
         private Log() { }
@@ -145,13 +137,12 @@ namespace EasyGoal
             this.id = id;
         }
 
-        public Log(decimal timetaken, string screenSize)
+        public Log(decimal timetaken)
         {
             this.timestamp = Current.Timestamp;
             this.timetaken = timetaken;
             this.length = Request.TotalBytes;
             this.method = Request.HttpMethod;
-            this.screen = screenSize;
             this.filePath = Request.FilePath;
             this.requestURL = Request.Url.ToString();
             this.referrer = Request.UrlReferrer == null ? "" : Request.UrlReferrer.ToString();
@@ -161,21 +152,21 @@ namespace EasyGoal
             this.httpDNT = Request.ServerVariables["HTTP_DNT"];
             this.httpVia = Request.ServerVariables["HTTP_Via"];
             this.httpXFF = Request.ServerVariables["HTTP_X_Forwarded_For"];
-            this.statusC = Response.StatusCode;
-            this.statusD = Response.StatusDescription;
+            this.statusCode = Response.StatusCode;
+            this.statusText = Response.StatusDescription;
         }
 
         #region Insert, Delete & Update methods
 
         public bool Insert()
         {
-            string cmdText = "INSERT INTO [Log] ([LOAD_BEGIN_TIME], [LOAD_TIME_TAKEN], [LENGTH], [METHOD], [SCREEN], [FILEPATH], [REQUEST_URL], [REFERRER], [USER_AGENT], [USER_HOST], [USER_PORT], [HTTP_DNT], [HTTP_VIA], [HTTP_XFF], [STATUS_C], [STATUS_D]) VALUES (@LoadBeginTime, @LoadTimeTaken, @Length, @Method, @Screen, @FilePath, @RequestURL, @Referrer, @UserAgent, @UserHost, @UserPort, @HTTP_DNT, @HTTP_Via, @HTTP_XFF, @Status_C, @Status_D)";
+            string cmdText = "INSERT INTO [Log] ([TIMESTAMP], [TIMETAKEN], [LENGTH], [METHOD], [FILEPATH], [REQUEST_URL], [REFERRER], [USER_AGENT], [USER_HOST], [USER_PORT], [HTTP_DNT], [HTTP_VIA], [HTTP_XFF], [STATUS_CODE], [STATUS_TEXT]) ";
+            cmdText += " VALUES (@Timestamp, @Timetaken, @Length, @Method, @FilePath, @RequestURL, @Referrer, @UserAgent, @UserHost, @UserPort, @HTTP_DNT, @HTTP_Via, @HTTP_XFF, @StatusCode, @StatusText)";
             SqlParameter[] parameters = new SqlParameter[] { 
-                new SqlParameter("@LoadBeginTime", this.timestamp),
-                new SqlParameter("@LoadTimeTaken", this.timetaken),
+                new SqlParameter("@Timestamp", this.timestamp),
+                new SqlParameter("@Timetaken", this.timetaken),
                 new SqlParameter("@Length", this.length),
                 new SqlParameter("@Method", this.method),
-                new SqlParameter("@Screen", this.screen),
                 new SqlParameter("@FilePath", this.filePath),
                 new SqlParameter("@RequestURL", this.requestURL),
                 new SqlParameter("@Referrer", this.referrer),
@@ -183,10 +174,10 @@ namespace EasyGoal
                 new SqlParameter("@UserHost", this.userHost),
                 new SqlParameter("@UserPort", this.userPort),
                 new SqlParameter("@HTTP_DNT", this.httpDNT),
-                new SqlParameter("@HTTP_VIa", this.httpVia),
+                new SqlParameter("@HTTP_Via", this.httpVia),
                 new SqlParameter("@HTTP_XFF", this.httpXFF),
-                new SqlParameter("@Status_C", this.statusC),
-                new SqlParameter("@Status_D", this.statusD)
+                new SqlParameter("@StatusCode", this.statusCode),
+                new SqlParameter("@StatusText", this.statusText)
             };
             SqlConnection connection = Database.GetConnection();
             int result = SqlHelper.ExecuteNonQuery(connection, CommandType.Text, cmdText, parameters);
