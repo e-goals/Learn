@@ -16,7 +16,7 @@
   void Application_Error(object sender, EventArgs e)
   {
     // 在出现未处理的错误时运行的代码
-    Server.Transfer("~/Error.aspx");
+    Server.Transfer("~/error.aspx");
   }
 
   void Session_Start(object sender, EventArgs e)
@@ -40,8 +40,9 @@
 
   void Application_EndRequest(object sender, EventArgs e)
   {
-    long counter = PreciseCounter.Counter;
-    decimal timetaken = PreciseCounter.TimeSpan((long)HttpContext.Current.Items["RequestCounter"], counter, TimeUnit.MilliSecond);
+    long currentCounter = PreciseCounter.Counter;
+    long requestCounter = (long)HttpContext.Current.Items["RequestCounter"];
+    decimal timetaken = PreciseCounter.TimeSpan(requestCounter, currentCounter, TimeUnit.MilliSecond);
     var log = new EasyGoal.Log(decimal.Round(timetaken, 3));
     log.Insert();
   }

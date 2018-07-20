@@ -1,8 +1,9 @@
-﻿using Microsoft.ApplicationBlocks.Data;
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web;
+
+using DBHelper = Microsoft.ApplicationBlocks.Data.SqlHelper;
 
 namespace EasyGoal
 {
@@ -37,7 +38,6 @@ namespace EasyGoal
         public int Id
         {
             get { return this.id; }
-            set { this.id = value; }
         }
         private DateTime timestamp;
         public DateTime Timestamp
@@ -51,35 +51,23 @@ namespace EasyGoal
             get { return this.timetaken; }
             set { this.timetaken = value; }
         }
-        private int length;
-        public int Length
-        {
-            get { return this.length; }
-            set { this.length = value; }
-        }
-        private string method;
-        public string Method
-        {
-            get { return this.method; }
-            set { this.method = value; }
-        }
         private string filePath;
         public string FilePath
         {
             get { return this.filePath; }
             set { this.filePath = value; }
         }
-        private string requestURL;
-        public string RequestURL
+        private string intactURL;
+        public string IntactURL
         {
-            get { return this.requestURL; }
-            set { this.requestURL = value; }
+            get { return this.intactURL; }
+            set { this.intactURL = value; }
         }
-        private string referrer;
-        public string Referrer
+        private string method;
+        public string Method
         {
-            get { return this.referrer; }
-            set { this.referrer = value; }
+            get { return this.method; }
+            set { this.method = value; }
         }
         private string userAgent;
         public string UserAgent
@@ -117,6 +105,12 @@ namespace EasyGoal
             get { return this.httpXFF; }
             set { this.httpXFF = value; }
         }
+        private string referrer;
+        public string Referrer
+        {
+            get { return this.referrer; }
+            set { this.referrer = value; }
+        }
         private int statusCode;
         public int StatusCode
         {
@@ -132,26 +126,20 @@ namespace EasyGoal
 
         private Log() { }
 
-        public Log(int id)
-        {
-            this.id = id;
-        }
-
         public Log(decimal timetaken)
         {
             this.timestamp = Current.Timestamp;
             this.timetaken = timetaken;
-            this.length = Request.TotalBytes;
-            this.method = Request.HttpMethod;
             this.filePath = Request.FilePath;
-            this.requestURL = Request.Url.ToString();
-            this.referrer = Request.UrlReferrer == null ? "" : Request.UrlReferrer.ToString();
+            this.intactURL = Request.Url.ToString();
+            this.method = Request.HttpMethod;
             this.userAgent = Request.UserAgent;
             this.userHost = Request.UserHostAddress;
             this.userPort = Request.ServerVariables["REMOTE_PORT"];
             this.httpDNT = Request.ServerVariables["HTTP_DNT"];
             this.httpVia = Request.ServerVariables["HTTP_Via"];
             this.httpXFF = Request.ServerVariables["HTTP_X_Forwarded_For"];
+            this.referrer = Request.UrlReferrer == null ? "" : Request.UrlReferrer.ToString();
             this.statusCode = Response.StatusCode;
             this.statusText = Response.StatusDescription;
         }
@@ -160,15 +148,14 @@ namespace EasyGoal
 
         public bool Insert()
         {
-            string cmdText = "INSERT INTO [Log] ([TIMESTAMP], [TIMETAKEN], [LENGTH], [METHOD], [FILEPATH], [REQUEST_URL], [REFERRER], [USER_AGENT], [USER_HOST], [USER_PORT], [HTTP_DNT], [HTTP_VIA], [HTTP_XFF], [STATUS_CODE], [STATUS_TEXT]) ";
-            cmdText += " VALUES (@Timestamp, @Timetaken, @Length, @Method, @FilePath, @RequestURL, @Referrer, @UserAgent, @UserHost, @UserPort, @HTTP_DNT, @HTTP_Via, @HTTP_XFF, @StatusCode, @StatusText)";
+            string cmdText = "INSERT INTO [Log] ([TIMESTAMP], [TIMETAKEN], [FILEPATH], [INTACT_URL], [METHOD], [USER_AGENT], [USER_HOST], [USER_PORT], [HTTP_DNT], [HTTP_VIA], [HTTP_XFF], [REFERRER], [STATUS_CODE], [STATUS_TEXT]) ";
+            cmdText += " VALUES (@Timestamp, @Timetaken, @FilePath, @IntactURL, @Method, @UserAgent, @UserHost, @UserPort, @HTTP_DNT, @HTTP_Via, @HTTP_XFF, @Referrer, @StatusCode, @StatusText)";
             SqlParameter[] parameters = new SqlParameter[] { 
                 new SqlParameter("@Timestamp", this.timestamp),
                 new SqlParameter("@Timetaken", this.timetaken),
-                new SqlParameter("@Length", this.length),
-                new SqlParameter("@Method", this.method),
                 new SqlParameter("@FilePath", this.filePath),
-                new SqlParameter("@RequestURL", this.requestURL),
+                new SqlParameter("@IntactURL", this.intactURL),
+                new SqlParameter("@Method", this.method),
                 new SqlParameter("@Referrer", this.referrer),
                 new SqlParameter("@UserAgent", this.userAgent),
                 new SqlParameter("@UserHost", this.userHost),
@@ -180,7 +167,7 @@ namespace EasyGoal
                 new SqlParameter("@StatusText", this.statusText)
             };
             SqlConnection connection = Database.GetConnection();
-            int result = SqlHelper.ExecuteNonQuery(connection, CommandType.Text, cmdText, parameters);
+            int result = DBHelper.ExecuteNonQuery(connection, CommandType.Text, cmdText, parameters);
             connection.Close();
             connection.Dispose();
             return (result > 0);
@@ -188,10 +175,10 @@ namespace EasyGoal
 
         public bool Delete()
         {
-            string cmdText = "DELETE FROM [News] WHERE [RecordID] = @Id";
+            string cmdText = "DELETE FROM [Log] WHERE [ID] = @Id";
             SqlParameter parameter = new SqlParameter("@Id", this.id);
             SqlConnection connection = Database.GetConnection();
-            int result = SqlHelper.ExecuteNonQuery(connection, CommandType.Text, cmdText, parameter);
+            int result = DBHelper.ExecuteNonQuery(connection, CommandType.Text, cmdText, parameter);
             connection.Close();
             connection.Dispose();
             return (result > 0);

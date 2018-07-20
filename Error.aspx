@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Error.aspx.cs" Inherits="Error" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="error.aspx.cs" Inherits="Error" %>
 
 <!DOCTYPE html>
 
@@ -19,7 +19,7 @@
     <div>
       <span class="code"><%= statusCode %></span>&emsp;<span class="text"><%= statusText %></span>
       <br />
-      <span class="prompt"><%= statusCode==200?"":"您要访问的页面出错了！网站已自动记录日志！" %></span>
+      <span class="prompt"><%= (statusCode == 200) ? "" : "您要访问的页面出错了！网站已自动记录日志！" %></span>
     </div>
   </form>
 </body>

@@ -13,14 +13,13 @@ public partial class Error : System.Web.UI.Page
         {
             Exception ex = Server.GetLastError().GetBaseException();
             string errorTime = string.Empty;
-            string erroraddr = string.Empty;
+            string errorURL = string.Empty;
             string errorMessage = string.Empty;
-            string errorsource = string.Empty;
-            string errorStackTrace = string.Empty;
-            errorTime = "发生时间: " + System.DateTime.Now.ToString();
-            erroraddr = "发生异常页: " + Request.Url.ToString();
-            errorMessage = "异常信息: " + ex.Message;
-            errorStackTrace = "堆栈信息:" + ex.StackTrace;
+            string errorTrace = string.Empty;
+            errorTime = "时间: " + DateTime.Now.ToString();
+            errorURL = "链接: " + Request.Url.ToString();
+            errorMessage = "信息: " + ex.Message;
+            errorTrace = "堆栈跟踪:" + ex.StackTrace;
 
             //独占方式，因为文件只能由一个进程写入.
             System.IO.StreamWriter writer = null;
@@ -43,10 +42,10 @@ public partial class Error : System.Web.UI.Page
 
                     writer = new System.IO.StreamWriter(file.FullName, true);
 
-                    string ip = "用户IP:" + Request.UserHostAddress;
+                    string ip = "ClientIP:" + Request.UserHostAddress;
                     string line = "-----------------------------------------------------";
 
-                    string log = "<p style='font-size:9pt;'><br />" + line + "<br /><font color=red>" + errorTime + "&nbsp;&nbsp;" + erroraddr + "</font><br /><font color=green>" + "<br/>" + ip + errorMessage + "<br />" + errorsource + "<br />" + errorStackTrace.Replace("\r\n", "<br />") + "</font></p>";
+                    string log = "<p style='font-size:9pt;'><br />" + line + "<br /><font color=red>" + errorTime + "&nbsp;&nbsp;" + errorURL + "</font><br /><font color=green>" + "<br/>" + ip + errorMessage + "<br />" + errorTrace.Replace("\r\n", "<br />") + "</font></p>";
                     writer.WriteLine(log);
 
                 }
