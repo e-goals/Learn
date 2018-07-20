@@ -13,7 +13,7 @@
       <asp:Button ID="Button_Compute" runat="server" Text="100 / 0 = ???" OnClick="Button_Compute_Click" />
     </div>
     <div>
-      <a href="page1234567890.aspx" target="_self">打开一个不存在的页面</a>
+      <a href="page1234567890.aspx" target="_self">不存在的页面</a>
     </div>
   </form>
 </body>

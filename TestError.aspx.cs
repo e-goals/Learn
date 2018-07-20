@@ -10,6 +10,6 @@ public partial class TestError : System.Web.UI.Page
     protected void Button_Compute_Click(object sender, EventArgs e)
     {
         int divisor = 0;
-        int result = 100 / divisor;
+        int result = 10 / divisor;
     }
 }
