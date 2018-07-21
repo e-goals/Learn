@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using System.IO;
 
 public partial class Error : System.Web.UI.Page
 {
@@ -21,8 +22,7 @@ public partial class Error : System.Web.UI.Page
             errorMessage = "信息: " + ex.Message;
             errorTrace = "堆栈跟踪:" + ex.StackTrace;
 
-            //独占方式，因为文件只能由一个进程写入.
-            System.IO.StreamWriter writer = null;
+            StreamWriter writer = null;
             try
             {
                 lock (this)
@@ -31,16 +31,14 @@ public partial class Error : System.Web.UI.Page
                     string path = string.Empty;
                     string filename = DateTime.Now.ToString("yyyyMMdd") + ".html";
                     path = Server.MapPath("~/ErrorLog/") + DateTime.Now.ToString("yyyyMM");
-                    //如果目录不存在则创建
-                    if (!System.IO.Directory.Exists(path))
+
+                    if (!Directory.Exists(path))
                     {
-                        System.IO.Directory.CreateDirectory(path);
+                        Directory.CreateDirectory(path);
                     }
-                    System.IO.FileInfo file = new System.IO.FileInfo(path + "/" + filename);
+                    FileInfo file = new FileInfo(path + "/" + filename);
 
-                    //文件不存在就创建,true表示追加
-
-                    writer = new System.IO.StreamWriter(file.FullName, true);
+                    writer = new StreamWriter(file.FullName, true);
 
                     string ip = "ClientIP:" + Request.UserHostAddress;
                     string line = "-----------------------------------------------------";

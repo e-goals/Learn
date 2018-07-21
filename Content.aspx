@@ -6,5 +6,5 @@
   </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_body" runat="server">
-  <%-- <%= PageEvents.GetChain() %>--%>
+  <%= PageEvents.GetChain() %>
 </asp:Content>

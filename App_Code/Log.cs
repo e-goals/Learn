@@ -148,7 +148,7 @@ namespace EasyGoal
 
         public bool Insert()
         {
-            string cmdText = "INSERT INTO [Log] ([TIMESTAMP], [TIMETAKEN], [EXACTURL], [FILEPATH], [METHOD], [USERAGENT], [USER_HOST], [USER_PORT], [HTTP_DNT], [HTTP_VIA], [HTTP_XFF], [REFERRER], [STATUS_CODE], [STATUS_TEXT]) ";
+            string cmdText = "INSERT INTO [Log] ([TIMESTAMP], [TIMETAKEN], [EXACTURL], [FILEPATH], [METHOD], [USER_AGENT], [USER_HOST], [USER_PORT], [HTTP_DNT], [HTTP_VIA], [HTTP_XFF], [REFERRER], [STATUS_CODE], [STATUS_TEXT]) ";
             cmdText += " VALUES (@Timestamp, @Timetaken, @ExactURL, @FilePath, @Method, @UserAgent, @UserHost, @UserPort, @HTTP_DNT, @HTTP_Via, @HTTP_XFF, @Referrer, @StatusCode, @StatusText)";
             SqlParameter[] parameters = new SqlParameter[] { 
                 new SqlParameter("@Timestamp", this.timestamp),

@@ -2,7 +2,6 @@
 using System.Web;
 using System.Web.UI;
 
-
 public partial class TraceEvents :BasePage//, ICallbackEventHandler
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -67,15 +66,13 @@ public partial class TraceEvents :BasePage//, ICallbackEventHandler
     protected override void OnInitComplete(EventArgs e)
     {
         Trace.Warn("OnInitComplete");
-        base.OnInitComplete(e);
-        
+        base.OnInitComplete(e);   
     }
 
     protected override void OnLoadComplete(EventArgs e)
     {
         Trace.Warn("OnLoadComplete");
-        base.OnLoadComplete(e);
-        
+        base.OnLoadComplete(e);  
     }
 
     protected override void OnPreInit(EventArgs e)
@@ -126,18 +123,4 @@ public partial class TraceEvents :BasePage//, ICallbackEventHandler
         Trace.Warn("SavePageStateToPersistenceMedium");
     }
 
-    //#region ICallbackEventHandler members
-
-
-    //public string GetCallbackResult()
-    //{
-    //    throw new Exception("The method or operation is not implemented.");
-    //}
-
-    //public void RaiseCallbackEvent(string eventArgument)
-    //{
-    //    throw new Exception("The method or operation is not implemented.");
-    //}
-
-    //#endregion
 }
