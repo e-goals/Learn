@@ -1,21 +1,20 @@
-﻿using System.Data.SqlClient;
+﻿using System.Configuration;
+using System.Data.SqlClient;
 
 namespace EasyGoal
 {
     public class Database
     {
-        private Database()
-        {
-        }
+        private Database() { }
 
-        public static string GetConnectionString()
+        public static string ConnectionString
         {
-            return System.Configuration.ConfigurationManager.ConnectionStrings["SQL_Server"].ConnectionString;
+            get { return ConfigurationManager.ConnectionStrings["SQL_Server"].ConnectionString; }
         }
 
         public static SqlConnection GetConnection()
         {
-            return new SqlConnection(GetConnectionString());
+            return new SqlConnection(ConnectionString);
         }
 
     }

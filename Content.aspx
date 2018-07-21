@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="Content.aspx.cs" Inherits="Content" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="content.aspx.cs" Inherits="Content" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="cph_head" runat="server">
   <style type="text/css">
@@ -6,6 +6,5 @@
   </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph_body" runat="server">
- <%-- <%= PageEvents.GetChain() %>--%>
+  <%-- <%= PageEvents.GetChain() %>--%>
 </asp:Content>
-

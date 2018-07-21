@@ -51,17 +51,17 @@ namespace EasyGoal
             get { return this.timetaken; }
             set { this.timetaken = value; }
         }
+        private string exactURL;
+        public string ExactURL
+        {
+            get { return this.exactURL; }
+            set { this.exactURL = value; }
+        }
         private string filePath;
         public string FilePath
         {
             get { return this.filePath; }
             set { this.filePath = value; }
-        }
-        private string intactURL;
-        public string IntactURL
-        {
-            get { return this.intactURL; }
-            set { this.intactURL = value; }
         }
         private string method;
         public string Method
@@ -130,8 +130,8 @@ namespace EasyGoal
         {
             this.timestamp = Current.Timestamp;
             this.timetaken = timetaken;
+            this.exactURL = Request.Url.ToString();
             this.filePath = Request.FilePath;
-            this.intactURL = Request.Url.ToString();
             this.method = Request.HttpMethod;
             this.userAgent = Request.UserAgent;
             this.userHost = Request.UserHostAddress;
@@ -139,7 +139,7 @@ namespace EasyGoal
             this.httpDNT = Request.ServerVariables["HTTP_DNT"];
             this.httpVia = Request.ServerVariables["HTTP_Via"];
             this.httpXFF = Request.ServerVariables["HTTP_X_Forwarded_For"];
-            this.referrer = Request.UrlReferrer == null ? "" : Request.UrlReferrer.ToString();
+            this.referrer = Request.UrlReferrer == null ? null : Request.UrlReferrer.ToString();
             this.statusCode = Response.StatusCode;
             this.statusText = Response.StatusDescription;
         }
@@ -148,21 +148,21 @@ namespace EasyGoal
 
         public bool Insert()
         {
-            string cmdText = "INSERT INTO [Log] ([TIMESTAMP], [TIMETAKEN], [FILEPATH], [INTACT_URL], [METHOD], [USER_AGENT], [USER_HOST], [USER_PORT], [HTTP_DNT], [HTTP_VIA], [HTTP_XFF], [REFERRER], [STATUS_CODE], [STATUS_TEXT]) ";
-            cmdText += " VALUES (@Timestamp, @Timetaken, @FilePath, @IntactURL, @Method, @UserAgent, @UserHost, @UserPort, @HTTP_DNT, @HTTP_Via, @HTTP_XFF, @Referrer, @StatusCode, @StatusText)";
+            string cmdText = "INSERT INTO [Log] ([TIMESTAMP], [TIMETAKEN], [EXACTURL], [FILEPATH], [METHOD], [USERAGENT], [USER_HOST], [USER_PORT], [HTTP_DNT], [HTTP_VIA], [HTTP_XFF], [REFERRER], [STATUS_CODE], [STATUS_TEXT]) ";
+            cmdText += " VALUES (@Timestamp, @Timetaken, @ExactURL, @FilePath, @Method, @UserAgent, @UserHost, @UserPort, @HTTP_DNT, @HTTP_Via, @HTTP_XFF, @Referrer, @StatusCode, @StatusText)";
             SqlParameter[] parameters = new SqlParameter[] { 
                 new SqlParameter("@Timestamp", this.timestamp),
                 new SqlParameter("@Timetaken", this.timetaken),
+                new SqlParameter("@ExactURL", this.exactURL),
                 new SqlParameter("@FilePath", this.filePath),
-                new SqlParameter("@IntactURL", this.intactURL),
                 new SqlParameter("@Method", this.method),
-                new SqlParameter("@Referrer", this.referrer),
                 new SqlParameter("@UserAgent", this.userAgent),
                 new SqlParameter("@UserHost", this.userHost),
                 new SqlParameter("@UserPort", this.userPort),
                 new SqlParameter("@HTTP_DNT", this.httpDNT),
                 new SqlParameter("@HTTP_Via", this.httpVia),
                 new SqlParameter("@HTTP_XFF", this.httpXFF),
+                new SqlParameter("@Referrer", this.referrer),
                 new SqlParameter("@StatusCode", this.statusCode),
                 new SqlParameter("@StatusText", this.statusText)
             };

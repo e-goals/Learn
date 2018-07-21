@@ -3,16 +3,10 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Web.UI;
 
-public partial class index : System.Web.UI.Page
+public partial class Index : System.Web.UI.Page
 {
-    protected string text = "<script type=\"text/javascript\">window.alert(\"hello\")</script>";
-
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
-        {
-            Page.DataBind();
-        }
     }
 
     protected override void Render(HtmlTextWriter writer)
@@ -34,13 +28,4 @@ public partial class index : System.Web.UI.Page
         Response.Write(pageContent);
     }
 
-    private static string RunningTime(long counter, long frequency)
-    {
-        long time_s = counter / frequency;
-        int d = (int)(counter / frequency / 3600.0 / 24);
-        int h = (int)(counter / frequency / 3600.0) - d * 24;
-        int m = (int)(counter / frequency / 60.0) - (d * 24 + h) * 60;
-        int s = (int)(counter / frequency) - ((d * 24 + h) * 60 + m) * 60;
-        return string.Format("{0} days {1} hours {2} minutes {3} seconds", d, h, m, s);
-    }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="index" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="Index" %>
 
 <!DOCTYPE html>
 
@@ -8,7 +8,7 @@
   <meta name="author" content="EASYGOAL.NET" />
   <meta name="description" content="Test Web Site" />
   <meta name="keywords" content="Web, CSS, Javascript" />
-  <title>abc</title>
+  <title>Override Render()</title>
   <link href="Image/favicon.ico" rel="shortcut icon" />
   <link href="Image/favicon.ico" rel="shortcut icon" />
   <script src="script/common.js" type="text/javascript"></script>
@@ -17,7 +17,7 @@
 <body>
   <form id="_form" runat="server">
     <div>
-      <asp:TextBox ID="tbox_test" runat="server" Text="<%# text %>"></asp:TextBox>
+      <span>Override Render()</span>
     </div>
   </form>
 </body>
