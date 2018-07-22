@@ -44,14 +44,13 @@
     long requestCounter = (long)HttpContext.Current.Items["RequestCounter"];
     decimal timetaken = PreciseCounter.TimeSpan(requestCounter, currentCounter, TimeUnit.MilliSecond);
     var log = new EasyGoal.Log(decimal.Round(timetaken, 3));
-    //log.Insert();
     try
     {
       log.Insert();
     }
-    catch (Exception ex)
+    catch (Exception exception)
     {
-      EasyGoal.Common.LogToSingleXML(ex);
+      EasyGoal.Common.LogException(exception, true);
     }
   }
 

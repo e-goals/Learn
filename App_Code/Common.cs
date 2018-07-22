@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Xml;
-
-using Encoder = Microsoft.Security.Application.Encoder;
+using System.Web;
+using System.Xml.Linq;
 
 namespace EasyGoal
 {
@@ -39,34 +36,42 @@ namespace EasyGoal
             }
         }
 
-        public static void LogException(Exception e)
+        public static void LogException(Exception e, bool xml)
         {
-            string datetime = DateTime.Now.ToString();
+            DateTime datetime = DateTime.Now;
+            string logDirectory = Current.Server.MapPath("~/log/") + datetime.ToString("yyyy-MM");
+            string logFilename = datetime.ToString("yyyyMMdd");
+            string timeString = datetime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            if (!Directory.Exists(logDirectory))
+                Directory.CreateDirectory(logDirectory);
 
-            System.IO.StreamWriter writer = null;
+            if (xml)
+            {
+                string logFile = string.Format("{0}/{1}.log.xml", logDirectory, logFilename);
+                LogExceptionToXML(e, timeString, logFile);
+            }
+            else
+            {
+                string logFile = string.Format("{0}/{1}.log", logDirectory, logFilename);
+                LogException(e, timeString, logFile);
+            }
+        }
+
+        private static void LogException(Exception e, string datetime, string logFile)
+        {
+            StreamWriter writer = null;
             try
             {
-                string path = Current.Server.MapPath("~/ErrorLog/") + DateTime.Now.ToString("yyyyMMdd");
-                string filename = string.Format("L{0}_{1}.xml", DateTime.Now.ToString("HHmmss"), Guid.NewGuid().ToString("N"));
-
-                if (!System.IO.Directory.Exists(path))
-                {
-                    System.IO.Directory.CreateDirectory(path);
-                }
-                System.IO.FileInfo file = new System.IO.FileInfo(path + "/" + filename);
-                writer = new System.IO.StreamWriter(file.FullName, true, Encoding.UTF8);
-
-                writer.WriteLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-                writer.WriteLine("<Exception>");
-                writer.WriteLine(string.Format("  <DateTime>{0}</DateTime>", datetime));
-                writer.WriteLine(string.Format("  <ExactURL>{0}</ExactURL>", Request.Url.ToString()));
-                writer.WriteLine(string.Format("  <Address>{0}</Address>", Request.UserHostAddress));
-                writer.WriteLine(string.Format("  <Message>{0}</Message>", e.Message));
-                writer.WriteLine("  <StackTrace>");
-                string stackTrace = Regex.Replace(string.Format("<line>{0}</line>", Encoder.XmlEncode(e.StackTrace)), @"&#13;&#10;\s*", "</line><line>");
-                writer.WriteLine(stackTrace);
-                writer.WriteLine("  </StackTrace>");
-                writer.WriteLine("</Exception>");
+                writer = new StreamWriter(logFile, true, Encoding.UTF8);
+                writer.WriteLine("-----------------------------------");
+                writer.WriteLine(string.Format("Datetime:\t{0}", datetime));
+                writer.WriteLine(string.Format("ClientIP:\t{0}", Request.UserHostAddress));
+                writer.WriteLine(string.Format("ClientUA:\t{0}", Request.UserAgent));
+                writer.WriteLine(string.Format("ExactURL:\t{0}", Request.Url.ToString()));
+                writer.WriteLine(string.Format("Messages:\t{0}", e.Message));
+                writer.WriteLine("StackTrace:");
+                writer.WriteLine(e.StackTrace);
+                writer.WriteLine();
             }
             finally
             {
@@ -75,86 +80,41 @@ namespace EasyGoal
             }
         }
 
-        public static void LogToSingleXML(Exception e)
+        private static void LogExceptionToXML(Exception e, string datetime, string logFile)
         {
+            XDocument document = null;
+            XElement rootNode = null;
 
-            string path = Current.Server.MapPath("~/ErrorLog/") + DateTime.Now.ToString("yyyyMMdd");
-            string filename = string.Format("L{0}_{1}.xml", DateTime.Now.ToString("HHmmss"), Guid.NewGuid().ToString("N"));
-
-            if (!System.IO.Directory.Exists(path))
+            if (!File.Exists(logFile))
             {
-                System.IO.Directory.CreateDirectory(path);
+                document = new XDocument();
+                document.Declaration = new XDeclaration("1.0", "utf-8", null);
+                document.Add(new XProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" href='/style/log.xsl'"));
+                rootNode = new XElement("Log");
+                document.Add(rootNode);
             }
-            XmlDocument document = new XmlDocument();
-            document.AppendChild(document.CreateXmlDeclaration("1.0", "utf-8", null));
-
-            XmlElement root = document.CreateElement("Exception");
-            document.AppendChild(root);
-
-            XmlElement datetime = document.CreateElement("Datetime");
-            datetime.InnerText = DateTime.Now.ToString();
-            XmlElement exactURL = document.CreateElement("ExactURL");
-            exactURL.InnerText = Request.Url.ToString();
-            XmlElement address = document.CreateElement("Address");
-            address.InnerText = Request.UserHostAddress;
-            XmlElement message = document.CreateElement("Message");
-            message.InnerText = e.Message;
-            XmlElement stackTrace = document.CreateElement("StackTrace");
-
-            string[] traces = Regex.Split(e.StackTrace, @"\r\n\s*");
-            foreach (string trace in traces)
+            else
             {
-                XmlElement line = document.CreateElement("Line");
-                line.InnerText = trace.Trim();
-                stackTrace.AppendChild(line);
+                document = XDocument.Load(logFile);
+                rootNode = document.Root;
             }
-            root.AppendChild(datetime);
-            root.AppendChild(exactURL);
-            root.AppendChild(address);
-            root.AppendChild(message);
-            root.AppendChild(stackTrace);
-            document.Save(path + "/" + filename);
+
+            XElement traceNode = new XElement("StackTrace");
+            foreach (string line in Regex.Split(e.StackTrace, "\r\n"))
+            {
+                traceNode.Add(new XElement("Line", line.Trim()));
+            }
+            rootNode.Add(
+                new XElement("Exception", new XAttribute("Time", datetime),
+                    new XElement("ClientIP", Request.UserHostAddress),
+                    new XElement("ClientUA", Request.UserAgent),
+                    new XElement("ExactURL", Request.Url.ToString()),
+                    new XElement("Message", e.Message),
+                    new XElement("Source", e.Source), traceNode
+                    )
+                );
+            document.Save(logFile);
         }
 
-        public static void LogToXML(Exception e)
-        {
-
-            string path = Current.Server.MapPath("~/ErrorLog/") + DateTime.Now.ToString("yyyyMM");
-            string filename = string.Format("L{0}.xml", DateTime.Now.ToString("yyyyMMdd"));
-
-            if (!System.IO.Directory.Exists(path))
-            {
-                System.IO.Directory.CreateDirectory(path);
-            }
-            XmlDocument document = new XmlDocument();
-            document.AppendChild(document.CreateXmlDeclaration("1.0", "utf-8", null));
-
-            XmlElement root = document.CreateElement("Exception");
-            document.AppendChild(root);
-
-            XmlElement datetime = document.CreateElement("Datetime");
-            datetime.InnerText = DateTime.Now.ToString();
-            XmlElement exactURL = document.CreateElement("ExactURL");
-            exactURL.InnerText = Request.Url.ToString();
-            XmlElement address = document.CreateElement("Address");
-            address.InnerText = Request.UserHostAddress;
-            XmlElement message = document.CreateElement("Message");
-            message.InnerText = e.Message;
-            XmlElement stackTrace = document.CreateElement("StackTrace");
-
-            string[] traces = Regex.Split(e.StackTrace, @"\r\n\s*");
-            foreach (string trace in traces)
-            {
-                XmlElement line = document.CreateElement("Line");
-                line.InnerText = trace.Trim();
-                stackTrace.AppendChild(line);
-            }
-            root.AppendChild(datetime);
-            root.AppendChild(exactURL);
-            root.AppendChild(address);
-            root.AppendChild(message);
-            root.AppendChild(stackTrace);
-            document.Save(path + "/" + filename);
-        }
     }
 }
