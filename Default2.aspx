@@ -9,13 +9,18 @@
 </head>
 <body>
   <form id="form1" runat="server">
-    <div>
+<%--    <div>
+      <span>连续两次高精度获取时间</span><br />
+      <%= "dt01: " + dt01.Ticks %><br />
+      <%= "dt02: " + dt02.Ticks %><br />
 
-      <p>
-        <hr />
-        <span style="color: red;"></span>
-      </p>
-    </div>
+      <span>连续两次DateTime.Now</span><br />
+      <%= "dt11: " + dt11.Ticks %><br />
+      <%= "dt12: " + dt12.Ticks %><br />
+      <br />
+      <%= "dt02-dt01 = " + (dt02.Ticks - dt01.Ticks).ToString() %><br />
+      <%= "dt12-dt11 = " + (dt12.Ticks - dt11.Ticks).ToString() %><br />
+    </div>--%>
   </form>
 </body>
 </html>

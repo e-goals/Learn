@@ -23,6 +23,16 @@ public class PreciseCounter
     [DllImport("Kernel32.dll")]
     private static extern bool QueryPerformanceFrequency(out long frequency);
 
+    [DllImport("Kernel32.dll")]
+    private static extern void GetSystemTimePreciseAsFileTime(out long filetime);
+
+    public static DateTime DateTimeUTC()
+    {
+        long filetime;
+        GetSystemTimePreciseAsFileTime(out filetime);
+        return DateTime.FromFileTimeUtc(filetime);
+    }
+
     static PreciseCounter()
     {
         if (!QueryPerformanceFrequency(out Frequency))
