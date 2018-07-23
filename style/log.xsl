@@ -24,6 +24,12 @@
               </td>
             </tr>
             <tr>
+              <th>Type</th>
+              <td>
+                <xsl:value-of select="@Type"/>
+              </td>
+            </tr>
+            <tr>
               <th>ClientIP</th>
               <td>
                 <xsl:value-of select="ClientIP"/>

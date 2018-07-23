@@ -390,7 +390,7 @@ namespace EasyGoal
             DateTime datetime = DateTime.Now;
             string logDirectory = Current.Server.MapPath("~/log/") + datetime.ToString("yyyy-MM");
             string logFilename = datetime.ToString("yyyyMMdd");
-            string timeString = datetime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            string timeString = datetime.ToString("yyyy-MM-dd HH:mm:ss.fffffff");
             if (!Directory.Exists(logDirectory))
                 Directory.CreateDirectory(logDirectory);
 
@@ -454,7 +454,9 @@ namespace EasyGoal
                 traceNode.Add(new XElement("Line", line.Trim()));
             }
             rootNode.Add(
-                new XElement("Exception", new XAttribute("Time", datetime),
+                new XElement("Exception",
+                    new XAttribute("Time", datetime),
+                    new XAttribute("Type", e.GetType()),
                     new XElement("ClientIP", Request.UserHostAddress),
                     new XElement("ClientUA", Request.UserAgent),
                     new XElement("ExactURL", Request.Url.ToString()),

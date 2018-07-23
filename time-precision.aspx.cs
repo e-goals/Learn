@@ -18,27 +18,36 @@ public partial class TimePrecision : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            double precision0 = 0, precision1 = 0, precision2 = 0;
-            int times = 100;
+            //double precision0 = 0, precision1 = 0, precision2 = 0;
+            //int times = 100;
 
-            for (int i = 0; i < times; i++)
-            {
-                precision0 += Test0();
-            }
+            //for (int i = 0; i < times; i++)
+            //{
+            //    precision0 += Test0();
+            //}
 
-            for (int i = 0; i < times; i++)
-            {
-                precision1 += Test1();
-            }
+            //for (int i = 0; i < times; i++)
+            //{
+            //    precision1 += Test1();
+            //}
 
-            for (int i = 0; i < times; i++)
-            {
-                precision2 += Test2();
-            }
+            //for (int i = 0; i < times; i++)
+            //{
+            //    precision2 += Test2();
+            //}
 
-            WriteLine("System.Environment.TickCount: {0:0.000} ms", precision0 / times);
-            WriteLine("System.DateTime.Now.Ticks: {0:0.0000} ms", precision1 / times);
-            WriteLine("EzGoal.DateTime.Now.Ticks: {0:0.0} μs", precision2 / times);
+            //WriteLine("System.Environment.TickCount: {0:0.000} ms", precision0 / times);
+            //WriteLine("System.DateTime.Now.Ticks: {0:0.0000} ms", precision1 / times);
+            //WriteLine("EzGoal.DateTime.Now.Ticks: {0:0.0} μs", precision2 / times);
+            DateTime t1, t2, t3, t4;
+            t1 = System.DateTime.Now;
+            t2 = System.DateTime.Now;
+            t3 = EasyGoal.Datetime.Now;
+            t4 = EasyGoal.Datetime.Now;
+            WriteLine(t1.ToString("yyyy-MM-dd HH:mm:ss.ffffffff"));
+            WriteLine(t2.ToString("yyyy-MM-dd HH:mm:ss.ffffffff"));
+            WriteLine(t3.ToString("yyyy-MM-dd HH:mm:ss.fffffff"));
+            WriteLine(t4.ToString("yyyy-MM-dd HH:mm:ss.fffffff"));
         }
     }
 
