@@ -4,7 +4,7 @@ namespace EasyGoal
 {
     public static class Datetime
     {
-        public static bool IsAvailable { get; private set; }
+        public static bool IsHighResolution { get; private set; }
 
         [DllImport("Kernel32.dll", CallingConvention = CallingConvention.Winapi)]
         private static extern void GetSystemTimePreciseAsFileTime(out long filetime);
@@ -15,11 +15,11 @@ namespace EasyGoal
             {
                 long filetime;
                 GetSystemTimePreciseAsFileTime(out filetime);
-                IsAvailable = true;
+                IsHighResolution = true;
             }
             catch (System.EntryPointNotFoundException)
             {
-                IsAvailable = false;
+                IsHighResolution = false;
             }
         }
 
@@ -27,7 +27,7 @@ namespace EasyGoal
         {
             get
             {
-                if (!IsAvailable)
+                if (!IsHighResolution)
                 {
                     throw new System.InvalidOperationException("High resolution clock isn't available.");
                 }
@@ -41,7 +41,7 @@ namespace EasyGoal
         {
             get
             {
-                if (!IsAvailable)
+                if (!IsHighResolution)
                 {
                     throw new System.InvalidOperationException("High resolution clock isn't available.");
                 }

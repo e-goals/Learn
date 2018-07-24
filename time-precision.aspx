@@ -17,7 +17,21 @@
     <div>
       <%= "System.Diagnostics.Stopwatch.Frequency: " + System.Diagnostics.Stopwatch.Frequency %><br />
       <p class="note">Cases might exist where QueryPerformanceFrequency doesn't return the actual frequency of the hardware tick generator. For example, in many cases, QueryPerformanceFrequency returns the TSC frequency divided by 1024; and on Hyper-V, the performance counter frequency is always 10 MHz when the guest virtual machine runs under a hypervisor that implements the hypervisor version 1.0 interface. As a result, don't assume that QueryPerformanceFrequency will return the precise TSC frequency.</p>
-      <%= output %>
+      <%= outputBuilder.ToString() %>
+      <%= DateTime.MinValue.ToString("yyyyMMdd HH:mm:ss.fffffff") %><br />
+      <%= DateTime.MaxValue.ToString("yyyyMMdd HH:mm:ss.fffffff") %><br />
+      <%= DateTime.MinValue.Ticks %><br />
+      <%= DateTime.MaxValue.Ticks %><br />
+      <%= Int64.MaxValue %><br />
+      <hr />
+      <script runat="server">
+        DateTime dtime0 = EasyGoal.Datetime.Now, dtime1 = EasyGoal.Datetime.UtcNow;
+        DateTime dtime2 = DateTime.Now, dtime3 = DateTime.UtcNow;
+      </script>
+      <%= dtime0.ToString() + ", " + dtime0.Ticks + ", " + dtime0.Kind %><br />
+      <%= dtime1.ToString() + ", " + dtime1.Ticks + ", " + dtime1.Kind %><br />
+      <%= dtime2.ToString() + ", " + dtime2.Ticks + ", " + dtime2.Kind %><br />
+      <%= dtime3.ToString() + ", " + dtime3.Ticks + ", " + dtime3.Kind %><br />
     </div>
   </form>
 </body>

@@ -2,56 +2,44 @@
 
 public partial class TimePrecision : System.Web.UI.Page
 {
-    protected string output = "";
+    protected System.Text.StringBuilder outputBuilder = new System.Text.StringBuilder("", 5120);
 
     private void WriteLine(string text)
     {
-        output += text + "<br />";
+        outputBuilder.Append(text);
+        outputBuilder.Append("<br />");
     }
 
     private void WriteLine(string format, params object[] args)
     {
-        output += string.Format(format + "<br />", args);
+        outputBuilder.AppendFormat(format, args);
+        outputBuilder.Append("<br />");
     }
 
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
-            //double precision0 = 0, precision1 = 0, precision2 = 0;
-            //int times = 100;
-
-            //for (int i = 0; i < times; i++)
-            //{
-            //    precision0 += Test0();
-            //}
-
-            //for (int i = 0; i < times; i++)
-            //{
-            //    precision1 += Test1();
-            //}
-
-            //for (int i = 0; i < times; i++)
-            //{
-            //    precision2 += Test2();
-            //}
-
-            //WriteLine("System.Environment.TickCount: {0:0.000} ms", precision0 / times);
-            //WriteLine("System.DateTime.Now.Ticks: {0:0.0000} ms", precision1 / times);
-            //WriteLine("EzGoal.DateTime.Now.Ticks: {0:0.0} μs", precision2 / times);
-            DateTime t1, t2, t3, t4;
-            t1 = System.DateTime.Now;
-            t2 = System.DateTime.Now;
-            t3 = EasyGoal.Datetime.Now;
-            t4 = EasyGoal.Datetime.Now;
-            WriteLine(t1.ToString("yyyy-MM-dd HH:mm:ss.ffffffff"));
-            WriteLine(t2.ToString("yyyy-MM-dd HH:mm:ss.ffffffff"));
-            WriteLine(t3.ToString("yyyy-MM-dd HH:mm:ss.fffffff"));
-            WriteLine(t4.ToString("yyyy-MM-dd HH:mm:ss.fffffff"));
+            //TestDifference();
+            TestResolution();
+            TestPrecisions();
         }
     }
 
-    private void Test()
+    private void TestResolution()
+    {
+        DateTime t1, t2, t3, t4;
+        t1 = System.DateTime.Now;
+        t2 = System.DateTime.Now;
+        t3 = EasyGoal.Datetime.Now;
+        t4 = EasyGoal.Datetime.Now;
+        WriteLine(t1.ToString("yyyy-MM-dd HH:mm:ss.fffffff"));
+        WriteLine(t2.ToString("yyyy-MM-dd HH:mm:ss.fffffff"));
+        WriteLine(t3.ToString("yyyy-MM-dd HH:mm:ss.fffffff"));
+        WriteLine(t4.ToString("yyyy-MM-dd HH:mm:ss.fffffff"));
+    }
+
+    private void TestDifference()
     {
         var beginTime = EasyGoal.Datetime.Now;
         var stopwatch = System.Diagnostics.Stopwatch.StartNew();
@@ -59,21 +47,47 @@ public partial class TimePrecision : System.Web.UI.Page
         DateTime dt0, dt1;
         TimeSpan ts;
 
-        while (stopwatch.Elapsed.TotalSeconds < 5)
+        while (stopwatch.Elapsed.TotalSeconds < 20)
         {
             dt0 = EasyGoal.Datetime.Now;
             ts = stopwatch.Elapsed;
 
             dt1 = beginTime + ts;
-            TimeSpan diff = dt0 - dt1;
+            TimeSpan d = dt0 - dt1;
 
-            output += string.Format("Difference: {0:0.0000} ms<br />", diff.TotalMilliseconds);
+            WriteLine("Difference: {0:0.0000} ms", d.TotalMilliseconds);
 
             System.Threading.Thread.Sleep(1000);
         }
     }
 
-    private int Test0()
+
+    private void TestPrecisions()
+    {
+        double precision0 = 0, precision1 = 0, precision2 = 0;
+        int times = 100;
+
+        //for (int i = 0; i < times; i++)
+        //{
+        //    precision0 += TestPrecision0();
+        //}
+
+        for (int i = 0; i < times; i++)
+        {
+            precision1 += TestPrecision1();
+        }
+
+        for (int i = 0; i < times; i++)
+        {
+            precision2 += TestPrecision2();
+        }
+
+        WriteLine("System.Environment.TickCount: {0:0.000} ms", precision0 / times);
+        WriteLine("System.DateTime.Now.Ticks: {0:0.0000} ms", precision1 / times);
+        WriteLine("EzGoal.DateTime.Now.Ticks: {0:0.0} μs", precision2 / times);
+    }
+
+    private int TestPrecision0()
     {
         int t0 = Environment.TickCount;
         int t1 = Environment.TickCount;
@@ -84,7 +98,7 @@ public partial class TimePrecision : System.Web.UI.Page
         return (t1 - t0);
     }
 
-    private double Test1()
+    private double TestPrecision1()
     {
         long t0 = DateTime.Now.Ticks;
         long t1 = DateTime.Now.Ticks;
@@ -95,7 +109,7 @@ public partial class TimePrecision : System.Web.UI.Page
         return (t1 - t0) / 10000.0;
     }
 
-    private double Test2()
+    private double TestPrecision2()
     {
         long t0 = EasyGoal.Datetime.Now.Ticks;
         long t1 = EasyGoal.Datetime.Now.Ticks;
