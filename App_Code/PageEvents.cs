@@ -3,9 +3,7 @@ public class PageEvents
 {
     private static string chain = "Page Events:<br />";
 
-    private PageEvents()
-    {
-    }
+    private PageEvents() { }
 
     public static void Append(long counter, string className, string eventName)
     {
