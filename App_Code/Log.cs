@@ -158,10 +158,11 @@ namespace EasyGoal
 
             var pTimestamp = new SqlParameter("@Timestamp", SqlDbType.DateTime2);
             pTimestamp.SqlValue = this.timestamp;
+            var pTimetaken = new SqlParameter("@Timetaken", SqlDbType.Decimal);
+            pTimetaken.SqlValue = this.timetaken;
 
             SqlParameter[] parameters = new SqlParameter[] { 
-                pTimestamp,
-                new SqlParameter("@Timetaken", this.timetaken),
+                pTimestamp, pTimetaken,
                 new SqlParameter("@ExactURL", this.exactURL),
                 new SqlParameter("@FilePath", this.filePath),
                 new SqlParameter("@Method", this.method),
