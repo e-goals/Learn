@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web;
-
 using DBHelper = Microsoft.ApplicationBlocks.Data.SqlHelper;
 
 namespace EasyGoal
@@ -19,7 +19,7 @@ namespace EasyGoal
             get
             {
                 if (HttpContext.Current == null)
-                    throw new Exception("System.Web.HttpContext.Current is NULL.");
+                    throw new NullReferenceException("System.Web.HttpContext.Current is NULL.");
                 return HttpContext.Current.Request;
             }
         }
@@ -29,7 +29,7 @@ namespace EasyGoal
             get
             {
                 if (HttpContext.Current == null)
-                    throw new Exception("System.Web.HttpContext.Current is NULL.");
+                    throw new NullReferenceException("System.Web.HttpContext.Current is NULL.");
                 return HttpContext.Current.Response;
             }
         }
@@ -126,6 +126,11 @@ namespace EasyGoal
 
         private Log() { }
 
+        public Log(int id)
+        {
+            this.id = id;
+        }
+
         public Log(decimal timetaken)
         {
             this.timestamp = Current.Timestamp;
@@ -150,8 +155,12 @@ namespace EasyGoal
         {
             string cmdText = "INSERT INTO [Log] ([TIMESTAMP], [TIMETAKEN], [EXACTURL], [FILEPATH], [METHOD], [USERAGENT], [USERHOST], [USERPORT], [HTTP_DNT], [HTTP_VIA], [HTTP_XFF], [REFERRER], [STATUS_CODE], [STATUS_TEXT]) ";
             cmdText += " VALUES (@Timestamp, @Timetaken, @ExactURL, @FilePath, @Method, @UserAgent, @UserHost, @UserPort, @HTTP_DNT, @HTTP_Via, @HTTP_XFF, @Referrer, @StatusCode, @StatusText)";
+
+            var pTimestamp = new SqlParameter("@Timestamp", SqlDbType.DateTime2);
+            pTimestamp.SqlValue = this.timestamp;
+
             SqlParameter[] parameters = new SqlParameter[] { 
-                new SqlParameter("@Timestamp", this.timestamp),
+                pTimestamp,
                 new SqlParameter("@Timetaken", this.timetaken),
                 new SqlParameter("@ExactURL", this.exactURL),
                 new SqlParameter("@FilePath", this.filePath),
@@ -185,6 +194,53 @@ namespace EasyGoal
         }
 
         #endregion Insert, Delete & Update methods
+
+        private static Log PopulateEntity(IDataRecord dr)
+        {
+            var log = new Log();
+            log.id = Convert.ToInt32(dr["ID"]);
+            log.timestamp = Convert.ToDateTime(dr["TIMESTAMP"]);
+            log.timetaken = Convert.ToDecimal(dr["TIMETAKEN"]);
+            log.exactURL = dr["EXACTURL"].ToString();
+            log.filePath = dr["FILEPATH"].ToString();
+            log.method = dr["METHOD"].ToString();
+            log.userAgent = dr["USERAGENT"].ToString();
+            log.userHost = dr["USERHOST"].ToString();
+            log.userPort = dr["USERPORT"].ToString();
+            log.httpDNT = dr["HTTP_DNT"].Equals(DBNull.Value) ? null : dr["HTTP_DNT"].ToString();
+            log.httpVia = dr["HTTP_VIA"].Equals(DBNull.Value) ? null : dr["HTTP_VIA"].ToString();
+            log.httpXFF = dr["HTTP_XFF"].Equals(DBNull.Value) ? null : dr["HTTP_XFF"].ToString();
+            log.Referrer = dr["REFERRER"].Equals(DBNull.Value) ? null : dr["REFERRER"].ToString();
+            log.statusCode = Convert.ToInt32(dr["STATUS_CODE"]);
+            log.statusText = dr["STATUS_TEXT"].ToString();
+            return log;
+        }
+
+        public static List<Log> GetAll()
+        {
+            var list = new List<Log>();
+            string sqlText = "SELECT * FROM [Log] ORDER BY [ID] DESC";
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                SqlDataReader dr = DBHelper.ExecuteReader(connection, CommandType.Text, sqlText);
+                while (dr.Read())
+                    list.Add(PopulateEntity(dr));
+            }
+            return list;
+        }
+
+        public static List<Log> GetAllError()
+        {
+            var list = new List<Log>();
+            string sqlText = "SELECT * FROM [Log] WHERE [STATUS_CODE] != '200' ORDER BY [ID] DESC";
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                SqlDataReader dr = DBHelper.ExecuteReader(connection, CommandType.Text, sqlText);
+                while (dr.Read())
+                    list.Add(PopulateEntity(dr));
+            }
+            return list;
+        }
 
     }
 }

@@ -25,72 +25,72 @@ public partial class Content : BasePage
     {
         base.OnPreInit(e);
         string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(PreciseCounter.Counter, method));
+        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
+        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
     }
 
     protected override void OnInit(EventArgs e)
     {
         base.OnInit(e);
         string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(PreciseCounter.Counter, method));
+        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
+        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
     }
 
     protected override void OnInitComplete(EventArgs e)
     {
         base.OnInitComplete(e);
         string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(PreciseCounter.Counter, method));
+        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
+        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
     }
 
     protected override void OnPreLoad(EventArgs e)
     {
         base.OnPreLoad(e);
         string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(PreciseCounter.Counter, method));
+        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
+        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
     }
 
     protected override void OnLoad(EventArgs e)
     {
         base.OnLoad(e);
         string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(PreciseCounter.Counter, method));
+        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
+        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
     }
 
     protected override void OnLoadComplete(EventArgs e)
     {
         base.OnLoadComplete(e);
         string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(PreciseCounter.Counter, method));
+        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
+        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
     }
 
     protected override void OnPreRender(EventArgs e)
     {
         base.OnPreRender(e);
         string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(PreciseCounter.Counter, method));
+        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
+        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
     }
 
     protected override void OnPreRenderComplete(EventArgs e)
     {
         base.OnPreRenderComplete(e);
         string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(PreciseCounter.Counter, method));
+        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
+        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
     }
 
     protected override void OnSaveStateComplete(EventArgs e)
     {
         base.OnSaveStateComplete(e);
         string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(PreciseCounter.Counter, method));
+        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
+        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
     }
 
     protected override void Render(HtmlTextWriter writer)

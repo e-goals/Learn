@@ -32,6 +32,8 @@
       <%= dtime1.ToString() + ", " + dtime1.Ticks + ", " + dtime1.Kind %><br />
       <%= dtime2.ToString() + ", " + dtime2.Ticks + ", " + dtime2.Kind %><br />
       <%= dtime3.ToString() + ", " + dtime3.Ticks + ", " + dtime3.Kind %><br />
+      <%= EasyGoal.Common.GenerateFilenameByGUID("txt") %><br />
+      <%= EasyGoal.Common.GenerateFilenameByTime("txt") %><br />
     </div>
   </form>
 </body>

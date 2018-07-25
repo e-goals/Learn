@@ -34,15 +34,15 @@
 
   void Application_BeginRequest(object sender, EventArgs e)
   {
-    HttpContext.Current.Items["RequestCounter"] = PreciseCounter.Counter;
+    HttpContext.Current.Items["RequestCounter"] = EasyGoal.PreciseCounter.Counter;
     PageEvents.Reset();
   }
 
   void Application_EndRequest(object sender, EventArgs e)
   {
-    long currentCounter = PreciseCounter.Counter;
+    long currentCounter = EasyGoal.PreciseCounter.Counter;
     long requestCounter = (long)HttpContext.Current.Items["RequestCounter"];
-    decimal timetaken = PreciseCounter.TimeSpan(requestCounter, currentCounter, TimeUnit.MilliSecond);
+    decimal timetaken = EasyGoal.PreciseCounter.TimeSpan(requestCounter, currentCounter, EasyGoal.TimeUnit.MilliSecond);
     var log = new EasyGoal.Log(decimal.Round(timetaken, 3));
     try
     {

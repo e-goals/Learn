@@ -8,19 +8,20 @@ public partial class Error : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        var lastError = Server.GetLastError();
-        if (lastError != null)
+        Exception lastError = Server.GetLastError();
+        if (lastError == null)
+            return;
+
+        EasyGoal.Common.LogException(lastError.GetBaseException(), true);
+
+        var httpException = lastError as HttpException;
+        if (httpException != null)
         {
-            EasyGoal.Common.LogException(lastError.GetBaseException(), true);
-            var httpException = lastError as HttpException;
-            if (httpException != null)
-            {
-                int httpCode = httpException.GetHttpCode();
-                Server.ClearError();
-                Response.StatusCode = httpCode;
-                this.statusCode = httpCode;
-                this.statusText = Response.StatusDescription;
-            }
+            int httpCode = httpException.GetHttpCode();
+            Server.ClearError();
+            Response.StatusCode = httpCode;
+            this.statusCode = httpCode;
+            this.statusText = Response.StatusDescription;
         }
     }
 

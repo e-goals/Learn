@@ -14,12 +14,12 @@ namespace EasyGoal
 
         #region HTTP Context Properties
 
-        private static HttpContext Current
+        public static HttpContext Current
         {
             get { return HttpContext.Current; }
         }
 
-        private static HttpRequest Request
+        public static HttpRequest Request
         {
             get
             {
@@ -29,7 +29,7 @@ namespace EasyGoal
             }
         }
 
-        private static HttpResponse Response
+        public static HttpResponse Response
         {
             get
             {
@@ -71,11 +71,17 @@ namespace EasyGoal
 
         public static string GenerateFilenameByGUID(string extension)
         {
-            return System.Guid.NewGuid().ToString("N") + extension;
+            string filename = System.Guid.NewGuid().ToString("N");
+            if (extension.StartsWith("."))
+                return filename + extension;
+            return string.Format("{0}.{1}", filename, extension);
         }
         public static string GenerateFilenameByTime(string extension)
         {
-            return System.DateTime.Now.ToString("yyyyMMddHHmmssfff") + extension;
+            string filename = EasyGoal.Datetime.Now.ToString("yyyyMMdd-HHmmss-fffffff");
+            if (extension.StartsWith("."))
+                return filename + extension;
+            return string.Format("{0}.{1}", filename, extension);
         }
 
         #region ArrayToString
@@ -387,7 +393,7 @@ namespace EasyGoal
 
         public static void LogException(Exception e, bool xml)
         {
-            DateTime datetime = DateTime.Now;
+            DateTime datetime = EasyGoal.Datetime.Now;
             string logDirectory = Current.Server.MapPath("~/log/") + datetime.ToString("yyyy-MM");
             string logFilename = datetime.ToString("yyyyMMdd");
             string timeString = datetime.ToString("yyyy-MM-dd HH:mm:ss.fffffff");

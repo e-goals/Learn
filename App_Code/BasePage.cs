@@ -4,8 +4,6 @@ using System.Reflection;
 
 public class BasePage : System.Web.UI.Page
 {
-    protected string eventOutput = null;
-
     public BasePage() { }
 
     private static string ClassName()
@@ -24,8 +22,8 @@ public class BasePage : System.Web.UI.Page
     {
         base.OnPreInit(e);
         string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(PreciseCounter.Counter, method));
+        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
+        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
     }
 
     // Occurs when the server control is initialized, which is the first step in its lifecycle.
@@ -33,8 +31,8 @@ public class BasePage : System.Web.UI.Page
     {
         base.OnInit(e);
         string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(PreciseCounter.Counter, method));
+        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
+        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
     }
 
     // Occurs when page initialization is complete.
@@ -42,8 +40,8 @@ public class BasePage : System.Web.UI.Page
     {
         base.OnInitComplete(e);
         string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(PreciseCounter.Counter, method));
+        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
+        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
     }
 
     // Occurs before the page Load event.
@@ -51,8 +49,8 @@ public class BasePage : System.Web.UI.Page
     {
         base.OnPreLoad(e);
         string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(PreciseCounter.Counter, method));
+        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
+        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
     }
 
     // Occurs when the server control is loaded into the Page object.
@@ -60,8 +58,8 @@ public class BasePage : System.Web.UI.Page
     {
         base.OnLoad(e);
         string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(PreciseCounter.Counter, method));
+        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
+        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
     }
 
     // Occurs at the end of the load stage of the page's life cycle.
@@ -69,8 +67,8 @@ public class BasePage : System.Web.UI.Page
     {
         base.OnLoadComplete(e);
         string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(PreciseCounter.Counter, method));
+        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
+        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
     }
 
     // Occurs after the Control object is loaded but prior to rendering.
@@ -78,8 +76,8 @@ public class BasePage : System.Web.UI.Page
     {
         base.OnPreRender(e);
         string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(PreciseCounter.Counter, method));
+        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
+        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
     }
 
     // Occurs before the page content is rendered.
@@ -87,8 +85,8 @@ public class BasePage : System.Web.UI.Page
     {
         base.OnPreRenderComplete(e);
         string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(PreciseCounter.Counter, method));
+        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
+        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
     }
 
     // Occurs after the page has completed saving all view state and control state information for the page and controls on the page.
@@ -96,7 +94,7 @@ public class BasePage : System.Web.UI.Page
     {
         base.OnSaveStateComplete(e);
         string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(PreciseCounter.Counter, method));
+        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
+        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
     }
 }
