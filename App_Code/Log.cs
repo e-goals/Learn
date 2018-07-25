@@ -158,19 +158,19 @@ namespace EasyGoal
 
             SqlParameter[] parameters = new SqlParameter[] { 
                 new SqlParameter("@Timestamp", this.timestamp) { SqlDbType = SqlDbType.DateTime2 },
-                new SqlParameter("@Timetaken", this.timetaken),
-                new SqlParameter("@ExactURL", this.exactURL),
-                new SqlParameter("@FilePath", this.filePath),
-                new SqlParameter("@Method", this.method),
-                new SqlParameter("@UserAgent", this.userAgent),
-                new SqlParameter("@UserHost", this.userHost),
-                new SqlParameter("@UserPort", this.userPort),
-                new SqlParameter("@HTTP_DNT", this.httpDNT),
-                new SqlParameter("@HTTP_Via", this.httpVia),
-                new SqlParameter("@HTTP_XFF", this.httpXFF),
-                new SqlParameter("@Referrer", this.referrer),
-                new SqlParameter("@StatusCode", this.statusCode),
-                new SqlParameter("@StatusText", this.statusText)
+                new SqlParameter("@Timetaken", this.timetaken) { SqlDbType = SqlDbType.Decimal },
+                new SqlParameter("@ExactURL", this.exactURL) { Size = 512 },
+                new SqlParameter("@FilePath", this.filePath) { Size = 256 },
+                new SqlParameter("@Method", this.method) { Size = 8 },
+                new SqlParameter("@UserAgent", this.userAgent) { Size = 256 },
+                new SqlParameter("@UserHost", this.userHost) { Size = 64 },
+                new SqlParameter("@UserPort", this.userPort) { Size = 8 },
+                new SqlParameter("@HTTP_DNT", this.httpDNT) { Size = 8 },
+                new SqlParameter("@HTTP_Via", this.httpVia) { Size = 256 },
+                new SqlParameter("@HTTP_XFF", this.httpXFF) { Size = 256 },
+                new SqlParameter("@Referrer", this.referrer) { Size = 512 },
+                new SqlParameter("@StatusCode", this.statusCode) { SqlDbType = SqlDbType.Int },
+                new SqlParameter("@StatusText", this.statusText) { Size = 128 }
             };
             SqlConnection connection = Database.GetConnection();
             int result = DBHelper.ExecuteNonQuery(connection, CommandType.Text, cmdText, parameters);
