@@ -156,13 +156,9 @@ namespace EasyGoal
             string cmdText = "INSERT INTO [Log] ([TIMESTAMP], [TIMETAKEN], [EXACTURL], [FILEPATH], [METHOD], [USERAGENT], [USERHOST], [USERPORT], [HTTP_DNT], [HTTP_VIA], [HTTP_XFF], [REFERRER], [STATUS_CODE], [STATUS_TEXT]) ";
             cmdText += " VALUES (@Timestamp, @Timetaken, @ExactURL, @FilePath, @Method, @UserAgent, @UserHost, @UserPort, @HTTP_DNT, @HTTP_Via, @HTTP_XFF, @Referrer, @StatusCode, @StatusText)";
 
-            var pTimestamp = new SqlParameter("@Timestamp", SqlDbType.DateTime2);
-            pTimestamp.SqlValue = this.timestamp;
-            var pTimetaken = new SqlParameter("@Timetaken", SqlDbType.Decimal);
-            pTimetaken.SqlValue = this.timetaken;
-
             SqlParameter[] parameters = new SqlParameter[] { 
-                pTimestamp, pTimetaken,
+                new SqlParameter("@Timestamp", this.timestamp) { SqlDbType = SqlDbType.DateTime2 },
+                new SqlParameter("@Timetaken", this.timetaken),
                 new SqlParameter("@ExactURL", this.exactURL),
                 new SqlParameter("@FilePath", this.filePath),
                 new SqlParameter("@Method", this.method),
