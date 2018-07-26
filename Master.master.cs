@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 
 public partial class Master : System.Web.UI.MasterPage
 {
@@ -7,39 +6,22 @@ public partial class Master : System.Web.UI.MasterPage
     {
     }
 
-    private static string ClassName()
-    {
-        return MethodBase.GetCurrentMethod().DeclaringType.Name;
-    }
-
-    private static string Output(long counter, string method)
-    {
-        string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
-        return string.Format("{0} - {1}.{2}", counter, className, method);
-    }
-
     protected override void OnInit(EventArgs e)
     {
         base.OnInit(e);
-        string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
+        PageEvents.Trace(this);
     }
 
     protected override void OnLoad(EventArgs e)
     {
         base.OnLoad(e);
-        string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
+        PageEvents.Trace(this);
     }
 
     protected override void OnPreRender(EventArgs e)
     {
         base.OnPreRender(e);
-        string method = MethodBase.GetCurrentMethod().Name;
-        PageEvents.Append(EasyGoal.PreciseCounter.Counter, ClassName(), method);
-        Trace.Warn(Output(EasyGoal.PreciseCounter.Counter, method));
+        PageEvents.Trace(this);
     }
 
 }

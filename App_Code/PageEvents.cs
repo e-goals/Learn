@@ -1,22 +1,50 @@
-﻿
+﻿using System.Collections.Generic;
+using System.Web.UI;
+
 public class PageEvents
 {
-    private static string chain = "Page Events:<br />";
+    private static Dictionary<long, string> dictionary = new Dictionary<long, string>();
+
+    public static string Output
+    {
+        get
+        {
+            var sb = new System.Text.StringBuilder("<span>Page Events:</span><br />");
+            foreach (KeyValuePair<long, string> pair in dictionary)
+            {
+                sb.Append("<span>");
+                sb.Append(pair.Key);
+                sb.Append(" - ");
+                sb.Append(pair.Value);
+                sb.Append("</span><br />");
+            }
+            return sb.ToString();
+        }
+    }
 
     private PageEvents() { }
 
-    public static void Append(long counter, string className, string eventName)
-    {
-        chain += string.Format("{0} - {1}.{2}<br />", counter, className, eventName);
-    }
-
     public static void Reset()
     {
-        chain = "Page Events:<br />";
+        dictionary.Clear();
     }
 
-    public static string GetChain()
+    public static void Trace(Page page)
     {
-        return chain;
+        long counter = EasyGoal.PreciseCounter.Counter;
+        var st = new System.Diagnostics.StackTrace(true);
+        var mb = st.GetFrame(1).GetMethod();
+        dictionary.Add(counter, string.Format("{0}.{1}", mb.DeclaringType.FullName, mb.Name));
+        page.Trace.Warn(string.Format("{0} - {1}.{2}", counter, mb.DeclaringType.FullName, mb.Name));
     }
+
+    public static void Trace(UserControl control)
+    {
+        long counter = EasyGoal.PreciseCounter.Counter;
+        var st = new System.Diagnostics.StackTrace(true);
+        var mb = st.GetFrame(1).GetMethod();
+        dictionary.Add(counter, string.Format("{0}.{1}", mb.DeclaringType.FullName, mb.Name));
+        control.Trace.Warn(string.Format("{0} - {1}.{2}", counter, mb.DeclaringType.FullName, mb.Name));
+    }
+
 }
