@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.IO;
+using System.Collections.Generic;
 
 public partial class FileViewer : System.Web.UI.Page
 {
@@ -12,29 +8,91 @@ public partial class FileViewer : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            ListFiles();
+            string dir = EasyGoal.Common.GetParamValue("dir");
+            if (dir == null)
+                dir = "";
+            var list = ListContents(dir);
+            Repeater_Contents.DataSource = list;
+            Repeater_Contents.DataBind();
         }
     }
 
-    private void ListFiles()
+    private List<Dircontent> ListContents(string path)
     {
-        string path = Server.MapPath("~/");
-        var ds = System.IO.Directory.GetDirectories(path);
-        DirectoryInfo di = new DirectoryInfo(path);
+        List<Dircontent> list = new List<Dircontent>();
+        DirectoryInfo dInfo = null;
+        FileInfo fInfo = null;
+        string sPath = Server.MapPath("~/") + path;
+        string[] dNames = Directory.GetDirectories(sPath);
+        for (int i = 0; i < dNames.Length; i++)
+        {
+            dInfo = new DirectoryInfo(dNames[i]);
+            Dircontent content = new Dircontent();
+            content.Name = dInfo.Name;
+            content.Path = dNames[i].Replace(Server.MapPath("~/"), "").Replace("\\", "/");
+            content.Size = 0;
+            content.Time = dInfo.LastWriteTime;
+            content.Type = "d";
+            content.Link = string.Format("<a href=\"file-viewer.aspx?dir={0}\" target=\"_self\">{1}</a>", content.Path, content.Name);
+            list.Add(content);
+        }
 
-        DirectoryInfo[] subDirs = di.GetDirectories();
-        foreach (DirectoryInfo subd in subDirs)
+        string[] fNames = Directory.GetFiles(sPath);
+        for (int i = 0; i < fNames.Length; i++)
         {
-            
-            Response.Write(subd.Name);
-            Response.Write("<br />");
+            fInfo = new FileInfo(fNames[i]);
+            Dircontent content = new Dircontent();
+            content.Name = fInfo.Name;
+            content.Path = fNames[i].Replace(Server.MapPath("~/"), "").Replace("\\", "/");
+            content.Size = fInfo.Length;
+            content.Time = fInfo.LastWriteTime;
+            content.Type = "f";
+            content.Link = string.Format("<a href=\"{0}\" target=\"_blank\">{1}</a>", content.Path, content.Name);
+            list.Add(content);
         }
-        Response.Write("<br />");
-        FileInfo[] fis = di.GetFiles();
-        foreach (FileInfo fi in fis)
-        {
-            Response.Write(fi.Name);
-            Response.Write("<br />");
-        }
+        return list;
     }
+
+    public string GetParentDirectory()
+    {
+        string parent = "";
+        string dir = EasyGoal.Common.GetParamValue("dir");
+        if (dir != null)
+        {
+            parent = Path.GetDirectoryName(dir).Replace("\\", "/");
+        }
+        if (parent != "")
+            return "?dir=" + parent;
+        else return "";
+    }
+
+    public static string FileSizeToString(long size)
+    {
+        if ((size >> 10) == 0)
+            return size + " B";
+        else if ((size >> 20) == 0)
+            return (size >> 10) + " KB";
+        else if ((size >> 30) == 0)
+            return (size >> 20) + " MB";
+        else if ((size >> 40) == 0)
+            return (size >> 30) + " GB";
+        else if ((size >> 50) == 0)
+            return (size >> 40) + " TB";
+        else if ((size >> 60) == 0)
+            return (size >> 50) + " PB";
+        else
+            return (size >> 60) + " ZB";
+    }
+
+}
+
+public class Dircontent
+{
+    public string Link { get; set; }
+    public string Name { get; set; }
+    public string Path { get; set; }
+    public long Size { get; set; }
+    public DateTime Time { get; set; }
+    public string Type { get; set; }
+    public Dircontent() { }
 }
