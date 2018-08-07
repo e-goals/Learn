@@ -8,11 +8,14 @@
   <title></title>
   <style type="text/css">
     html, body { height: 100%; margin: 0; padding: 0; width: 100%; }
-    form { padding: 30px; }
+    form { padding: 50px 30px; position: relative; }
+    #nav { position: fixed; height: 50px; left: 0; right: 0; top: 0; padding: 0 40px; background-color: #CC0; z-index: 1; }
+      #nav a { color: #090; display: inline-block; font-family: SimSun, sans-serif; font-size: 20px; font-weight: bold; line-height: 48px; text-decoration: none; }
+        #nav a img { height: 22px; vertical-align: text-top; }
     ul { margin: 0; padding: 0; list-style-position: inside; list-style-type: none; width: 100%; }
       ul li { margin: 0; padding: 0; }
         ul li > span { display: block; font-size: 18px; font-weight: bold; line-height: 2.25em; }
-        ul li a { border-bottom: 1px solid #ddd; color: #000; display: block; height: 2.25em; line-height: 2.25em; text-decoration: none; }
+        ul li a { border-bottom: 1px solid #ddd; color: #000; display: block; font-size: 16px; height: 2.25em; line-height: 2.25em; text-decoration: none; }
           ul li a:hover { box-shadow: 0px 1px 10px #000; }
           ul li a span { display: block; }
     span.name { float: left; padding-left: 10px; text-align: left; }
@@ -24,16 +27,20 @@
 </head>
 <body>
   <form id="_form" runat="server">
-    <div>
-      <a href="file-viewer.aspx<%= GetParentDirectory() %>" target="_self">返回上层</a><br />
+    <div id="nav">
+      <a href="file-viewer.aspx<%= GetParentDirectory() %>" target="_self">
+        <img src="image/up.png" alt="up" />回到上一层目录
+      </a>
+    </div>
+    <div style="position: relative; z-index: 0;">
       <asp:Repeater ID="Repeater_Contents" runat="server">
         <HeaderTemplate>
-        <ul>
-          <li class="clearfix">
-            <span class="name">Name</span>
-            <span class="size">Size</span>
-            <span class="time">Last Modified</span>
-          </li>
+          <ul>
+            <li class="clearfix">
+              <span class="name">Name</span>
+              <span class="size">Size</span>
+              <span class="time">Last Modified</span>
+            </li>
         </HeaderTemplate>
         <ItemTemplate>
           <li>
@@ -45,7 +52,7 @@
           </li>
         </ItemTemplate>
         <FooterTemplate>
-        </ul>
+          </ul>
         </FooterTemplate>
       </asp:Repeater>
     </div>
