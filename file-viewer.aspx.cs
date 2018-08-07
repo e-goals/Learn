@@ -33,7 +33,7 @@ public partial class FileViewer : System.Web.UI.Page
             content.Size = 0;
             content.Time = dInfo.LastWriteTime;
             content.Type = "d";
-            content.Link = string.Format("<a href=\"file-viewer.aspx?dir={0}\" target=\"_self\">{1}</a>", content.Path, content.Name);
+            content.Link = string.Format("href=\"file-viewer.aspx?dir={0}\" target=\"_self\"", content.Path);
             list.Add(content);
         }
 
@@ -47,13 +47,13 @@ public partial class FileViewer : System.Web.UI.Page
             content.Size = fInfo.Length;
             content.Time = fInfo.LastWriteTime;
             content.Type = "f";
-            content.Link = string.Format("<a href=\"{0}\" target=\"_blank\">{1}</a>", content.Path, content.Name);
+            content.Link = string.Format("href=\"{0}\" target=\"_blank\"", content.Path);
             list.Add(content);
         }
         return list;
     }
 
-    public string GetParentDirectory()
+    public string ParentDirectory()
     {
         string parent = "";
         string dir = EasyGoal.Common.GetParamValue("dir");
@@ -61,9 +61,7 @@ public partial class FileViewer : System.Web.UI.Page
         {
             parent = Path.GetDirectoryName(dir).Replace("\\", "/");
         }
-        if (parent != "")
-            return "?dir=" + parent;
-        else return "";
+        return (parent != "") ? ("?dir=" + parent) : "";
     }
 
     public static string FileSizeToString(long size)

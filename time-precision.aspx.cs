@@ -67,10 +67,10 @@ public partial class TimePrecision : System.Web.UI.Page
         double precision0 = 0, precision1 = 0, precision2 = 0;
         int times = 100;
 
-        //for (int i = 0; i < times; i++)
-        //{
-        //    precision0 += TestPrecision0();
-        //}
+        for (int i = 0; i < times; i++)
+        {
+            precision0 += TestPrecision0();
+        }
 
         for (int i = 0; i < times; i++)
         {

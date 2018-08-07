@@ -5,13 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title></title>
+  <title>File Lister</title>
   <style type="text/css">
     html, body { height: 100%; margin: 0; padding: 0; width: 100%; }
     form { padding: 50px 30px; position: relative; }
-    #nav { position: fixed; height: 50px; left: 0; right: 0; top: 0; padding: 0 40px; background-color: #CC0; z-index: 1; }
-      #nav a { color: #090; display: inline-block; font-family: SimSun, sans-serif; font-size: 20px; font-weight: bold; line-height: 48px; text-decoration: none; }
-        #nav a img { height: 22px; vertical-align: text-top; }
+    #navi { position: fixed; height: 50px; left: 0; right: 0; top: 0; padding: 0 40px; background-color: #CC0; z-index: 1; }
+      #navi a { color: #090; display: inline-block; font-family: SimSun, sans-serif; font-size: 20px; font-weight: bold; line-height: 48px; text-decoration: none; }
+        #navi a img { height: 22px; vertical-align: text-top; }
+    #list { position: relative; z-index: 0; }
     ul { margin: 0; padding: 0; list-style-position: inside; list-style-type: none; width: 100%; }
       ul li { margin: 0; padding: 0; }
         ul li > span { display: block; font-size: 18px; font-weight: bold; line-height: 2.25em; }
@@ -27,34 +28,32 @@
 </head>
 <body>
   <form id="_form" runat="server">
-    <div id="nav">
-      <a href="file-viewer.aspx<%= GetParentDirectory() %>" target="_self">
+    <div id="navi">
+      <a href="file-viewer.aspx<%= ParentDirectory() %>" target="_self">
         <img src="image/up.png" alt="up" />回到上一层目录
       </a>
     </div>
-    <div style="position: relative; z-index: 0;">
-      <asp:Repeater ID="Repeater_Contents" runat="server">
-        <HeaderTemplate>
-          <ul>
+    <div id="list">
+      <ul>
+        <asp:Repeater ID="Repeater_Contents" runat="server">
+          <HeaderTemplate>
             <li class="clearfix">
               <span class="name">Name</span>
               <span class="size">Size</span>
               <span class="time">Last Modified</span>
             </li>
-        </HeaderTemplate>
-        <ItemTemplate>
-          <li>
-            <a href="<%# ((Dircontent)Container.DataItem).Type == "d" ? "file-viewer.aspx?dir=" + ((Dircontent)Container.DataItem).Path : ((Dircontent)Container.DataItem).Path %>" target="<%# ((Dircontent)Container.DataItem).Type == "d" ? "_self" : "_blank" %>">
-              <span class="name"><%# ((Dircontent)Container.DataItem).Name %></span>
-              <span class="size"><%# ((Dircontent)Container.DataItem).Type == "d" ? " --- " : FileSizeToString(((Dircontent)Container.DataItem).Size) %></span>
-              <span class="time"><%# ((Dircontent)Container.DataItem).Time.ToString("yyyy-MM-dd HH:mm:ss") %></span>
-            </a>
-          </li>
-        </ItemTemplate>
-        <FooterTemplate>
-          </ul>
-        </FooterTemplate>
-      </asp:Repeater>
+          </HeaderTemplate>
+          <ItemTemplate>
+            <li>
+              <a <%# ((Dircontent)Container.DataItem).Link %>>
+                <span class="name"><%# ((Dircontent)Container.DataItem).Name %></span>
+                <span class="size"><%# ((Dircontent)Container.DataItem).Type == "d" ? " --- " : FileSizeToString(((Dircontent)Container.DataItem).Size) %></span>
+                <span class="time"><%# ((Dircontent)Container.DataItem).Time.ToString("yyyy-MM-dd HH:mm:ss") %></span>
+              </a>
+            </li>
+          </ItemTemplate>
+        </asp:Repeater>
+      </ul>
     </div>
   </form>
 </body>

@@ -69,6 +69,7 @@ public partial class Content : BasePage
         var htmlWriter = new System.Web.UI.HtmlTextWriter(stringWriter);
 
         base.Render(htmlWriter);
+
         htmlWriter.Flush();
         htmlWriter.Close();
         string html = stringWriter.ToString().Replace("\t", "  ");
