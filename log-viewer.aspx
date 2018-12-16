@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Log.aspx.cs" Inherits="Log" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="log-viewer.aspx.cs" Inherits="Log" %>
 
 <!DOCTYPE html>
 
@@ -8,9 +8,8 @@
   <title></title>
 </head>
 <body>
-  <form id="form1" runat="server">
+  <form id="_form" runat="server">
     <div>
-      <%=EasyGoal.Common.Current.Timestamp.ToString("yyyy-MM-dd HH:mm:ss.fffffff") %>
       <asp:GridView ID="GridView1" AutoGenerateColumns="false" runat="server" Width="100%">
         <Columns>
           <asp:TemplateField HeaderText="#" HeaderStyle-Width="30px">

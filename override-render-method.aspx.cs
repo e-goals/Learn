@@ -3,7 +3,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Web.UI;
 
-public partial class Index : System.Web.UI.Page
+public partial class OverrideRender : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {

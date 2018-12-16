@@ -42,6 +42,7 @@
         <td><%# Request.ServerVariables["HTTP_X_Forwarded_For"] %></td>
       </tr>
     </table>
+    <a href="override-render-method.aspx" target="_blank">Override Render()</a>
   </form>
 </body>
 </html>

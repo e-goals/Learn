@@ -1,0 +1,5 @@
+﻿html, body { background: transparent; height: 100%; margin: 0; min-width: 1000px; _width: 1000px; padding: 0; }
+html { overflow-y: scroll; }
+body { text-align: center; }
+form { margin: 10px auto; padding: 0; width: 1000px; }
+.error { color: #F00; font-family: 'Courier New', monospace; font-size: 28px; font-weight: bold; line-height: 1.5em; }

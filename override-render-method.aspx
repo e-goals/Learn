@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="Index" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="override-render-method.aspx.cs" Inherits="OverrideRender" %>
 
 <!DOCTYPE html>
 
