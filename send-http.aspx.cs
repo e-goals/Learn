@@ -101,6 +101,6 @@ public partial class SendHttp : System.Web.UI.Page
         TextBox1.Text = GetResponseString(HttpResponseByPost("http://127.0.0.1/proxy/Log.aspx", dic));
         //get请求并调用
 
-        TextBox2.Text = GetResponseString(HttpResponseByGet("http://127.0.0.1/proxy/Log.aspx?id=000"));
+        TextBox2.Text = GetResponseString(HttpResponseByGet("http://127.0.0.1/proxy/Log.aspx?id=00"));
     }
 }
