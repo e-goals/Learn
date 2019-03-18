@@ -29,10 +29,10 @@
         DateTime dtime2 = DateTime.Now, dtime3 = DateTime.UtcNow;
       </script>
       <p class="note">以下的4个时间值，前两个来自EzGoal.Datetime连续获取，后两个来自System.DateTime连续获取</p>
-      <%= dtime0.ToString() + ", " + dtime0.Ticks + ", " + dtime0.Kind %><br />
-      <%= dtime1.ToString() + ", " + dtime1.Ticks + ", " + dtime1.Kind %><br />
-      <%= dtime2.ToString() + ", " + dtime2.Ticks + ", " + dtime2.Kind %><br />
-      <%= dtime3.ToString() + ", " + dtime3.Ticks + ", " + dtime3.Kind %><br />
+      <%= dtime0.ToString("yyyyMMdd HH:mm:ss.fffffff") + ", " + dtime0.Ticks + ", " + dtime0.Kind %><br />
+      <%= dtime1.ToString("yyyyMMdd HH:mm:ss.fffffff") + ", " + dtime1.Ticks + ", " + dtime1.Kind %><br />
+      <%= dtime2.ToString("yyyyMMdd HH:mm:ss.fffffff") + ", " + dtime2.Ticks + ", " + dtime2.Kind %><br />
+      <%= dtime3.ToString("yyyyMMdd HH:mm:ss.fffffff") + ", " + dtime3.Ticks + ", " + dtime3.Kind %><br />
       <br />
       <span>通过GUID生成文件名：</span><%= EasyGoal.Common.GenerateFilenameByGUID("txt") %><br />
       <span>通过Time生成文件名：</span><%= EasyGoal.Common.GenerateFilenameByTime("txt") %><br />
