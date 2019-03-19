@@ -31,8 +31,8 @@ public partial class TimePrecision : System.Web.UI.Page
         DateTime t1, t2, t3, t4;
         t1 = System.DateTime.Now;
         t2 = System.DateTime.Now;
-        t3 = EasyGoal.Datetime.Now;
-        t4 = EasyGoal.Datetime.Now;
+        t3 = EZGoal.Datetime.Now;
+        t4 = EZGoal.Datetime.Now;
         WriteLine(t1.ToString("yyyy-MM-dd HH:mm:ss.fffffff"));
         WriteLine(t2.ToString("yyyy-MM-dd HH:mm:ss.fffffff"));
         WriteLine(t3.ToString("yyyy-MM-dd HH:mm:ss.fffffff"));
@@ -41,7 +41,7 @@ public partial class TimePrecision : System.Web.UI.Page
 
     private void TestDifference()
     {
-        var beginTime = EasyGoal.Datetime.Now;
+        var beginTime = EZGoal.Datetime.Now;
         var stopwatch = System.Diagnostics.Stopwatch.StartNew();
 
         DateTime dt0, dt1;
@@ -49,7 +49,7 @@ public partial class TimePrecision : System.Web.UI.Page
 
         while (stopwatch.Elapsed.TotalSeconds < 20)
         {
-            dt0 = EasyGoal.Datetime.Now;
+            dt0 = EZGoal.Datetime.Now;
             ts = stopwatch.Elapsed;
 
             dt1 = beginTime + ts;
@@ -84,7 +84,7 @@ public partial class TimePrecision : System.Web.UI.Page
 
         WriteLine("System.Environment.TickCount: {0:0.000} ms", precision0 / times);
         WriteLine("System.DateTime.Now.Ticks: {0:0.0000} ms", precision1 / times);
-        WriteLine("EzGoal.DateTime.Now.Ticks: {0:0.0} μs", precision2 / times);
+        WriteLine("EzGoal.Datetime.Now.Ticks: {0:0.0} μs", precision2 / times);
     }
 
     private int TestPrecision0()
@@ -111,11 +111,11 @@ public partial class TimePrecision : System.Web.UI.Page
 
     private double TestPrecision2()
     {
-        long t0 = EasyGoal.Datetime.Now.Ticks;
-        long t1 = EasyGoal.Datetime.Now.Ticks;
+        long t0 = EZGoal.Datetime.Now.Ticks;
+        long t1 = EZGoal.Datetime.Now.Ticks;
         while (t0 == t1)
         {
-            t1 = EasyGoal.Datetime.Now.Ticks;
+            t1 = EZGoal.Datetime.Now.Ticks;
         }
         return (t1 - t0) / 10.0;
     }

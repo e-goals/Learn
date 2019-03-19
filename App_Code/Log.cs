@@ -2,38 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Web;
 using DBHelper = Microsoft.ApplicationBlocks.Data.SqlHelper;
 
-namespace EasyGoal
+namespace EZGoal
 {
     public class Log
     {
-        private static HttpContext Current
-        {
-            get { return HttpContext.Current; }
-        }
-
-        private static HttpRequest Request
-        {
-            get
-            {
-                if (HttpContext.Current == null)
-                    throw new NullReferenceException("System.Web.HttpContext.Current is NULL.");
-                return HttpContext.Current.Request;
-            }
-        }
-
-        private static HttpResponse Response
-        {
-            get
-            {
-                if (HttpContext.Current == null)
-                    throw new NullReferenceException("System.Web.HttpContext.Current is NULL.");
-                return HttpContext.Current.Response;
-            }
-        }
-
         private int id;
         public int Id
         {
@@ -133,20 +107,20 @@ namespace EasyGoal
 
         public Log(decimal timetaken)
         {
-            this.timestamp = Current.Timestamp;
+            this.timestamp = Common.Current.Timestamp;
             this.timetaken = timetaken;
-            this.exactURL = Request.Url.ToString();
-            this.filePath = Request.FilePath;
-            this.method = Request.HttpMethod;
-            this.userAgent = Request.UserAgent;
-            this.userHost = Request.UserHostAddress;
-            this.userPort = Request.ServerVariables["REMOTE_PORT"];
-            this.httpDNT = Request.ServerVariables["HTTP_DNT"];
-            this.httpVia = Request.ServerVariables["HTTP_Via"];
-            this.httpXFF = Request.ServerVariables["HTTP_X_Forwarded_For"];
-            this.referrer = Request.UrlReferrer == null ? null : Request.UrlReferrer.ToString();
-            this.statusCode = Response.StatusCode;
-            this.statusText = Response.StatusDescription;
+            this.exactURL = Common.Request.Url.ToString();
+            this.filePath = Common.Request.FilePath;
+            this.method = Common.Request.HttpMethod;
+            this.userAgent = Common.Request.UserAgent;
+            this.userHost = Common.Request.UserHostAddress;
+            this.userPort = Common.Request.ServerVariables["REMOTE_PORT"];
+            this.httpDNT = Common.Request.ServerVariables["HTTP_DNT"];
+            this.httpVia = Common.Request.ServerVariables["HTTP_Via"];
+            this.httpXFF = Common.Request.ServerVariables["HTTP_X_Forwarded_For"];
+            this.referrer = Common.Request.UrlReferrer == null ? null : Common.Request.UrlReferrer.ToString();
+            this.statusCode = Common.Response.StatusCode;
+            this.statusText = Common.Response.StatusDescription;
         }
 
         #region Insert, Delete & Update methods
@@ -157,7 +131,7 @@ namespace EasyGoal
             cmdText += " VALUES (@Timestamp, @Timetaken, @ExactURL, @FilePath, @Method, @UserAgent, @UserHost, @UserPort, @HTTP_DNT, @HTTP_Via, @HTTP_XFF, @Referrer, @StatusCode, @StatusText)";
 
             SqlParameter[] parameters = new SqlParameter[] { 
-                new SqlParameter("@Timestamp", this.timestamp) { SqlDbType = SqlDbType.DateTime2 },
+                new SqlParameter("@Timestamp", this.timestamp) { SqlDbType = SqlDbType.DateTime },
                 new SqlParameter("@Timetaken", this.timetaken) { SqlDbType = SqlDbType.Decimal },
                 new SqlParameter("@ExactURL", this.exactURL) { Size = 512 },
                 new SqlParameter("@FilePath", this.filePath) { Size = 256 },

@@ -34,34 +34,59 @@
 
   void Application_BeginRequest(object sender, EventArgs e)
   {
-    HttpContext.Current.Items["RequestCounter"] = EasyGoal.PreciseCounter.Counter;
+   // HttpContext.Current.Items["RequestCounter"] = System.Diagnostics.Stopwatch.GetTimestamp();
+    
+    if (EZGoal.Datetime.IsHighResolution)
+    {
+      HttpContext.Current.Items["RequestCounter"] = EZGoal.PreciseCounter.Counter;
+    }
+    else
+    {
+      HttpContext.Current.Items["RequestCounter"] = System.DateTime.Now.Ticks;
+    }
     PageEvents.Reset();
   }
 
   void Application_EndRequest(object sender, EventArgs e)
   {
-    long currentCounter = EasyGoal.PreciseCounter.Counter;
-    long requestCounter = (long)HttpContext.Current.Items["RequestCounter"];
-    decimal timetaken = EasyGoal.PreciseCounter.TimeSpan(requestCounter, currentCounter, EasyGoal.TimeUnit.MilliSecond);
-    var log = new EasyGoal.Log(decimal.Round(timetaken, 3));
-    try
+    if (EZGoal.Datetime.IsHighResolution)
     {
-      log.Insert();
+      long currentCounter = EZGoal.PreciseCounter.Counter;
+      long requestCounter = (long)HttpContext.Current.Items["RequestCounter"];
+      decimal timetaken = EZGoal.PreciseCounter.TimeSpan(requestCounter, currentCounter, EZGoal.TimeUnit.MilliSecond);
+      var log = new EZGoal.Log(decimal.Round(timetaken, 3));
+      try
+      {
+        log.Insert();
+      }
+      catch (Exception exception)
+      {
+        EZGoal.Common.LogException(exception, true);
+      }
     }
-    catch (Exception exception)
+    else
     {
-      EasyGoal.Common.LogException(exception, true);
+      long currentCounter = DateTime.Now.Ticks;
+      long requestCounter = (long)HttpContext.Current.Items["RequestCounter"];
+      decimal timetaken = EZGoal.PreciseCounter.TimeSpan(requestCounter, currentCounter, EZGoal.TimeUnit.MilliSecond);
+      var log = new EZGoal.Log(decimal.Round(timetaken, 3));
+      try
+      {
+        log.Insert();
+      }
+      catch (Exception exception)
+      {
+        EZGoal.Common.LogException(exception, true);
+      }
     }
   }
 
   void Application_PreSendRequestHeaders(object sender, EventArgs e)
   {
-
   }
 
   void Application_PreSendRequestContent(object sender, EventArgs e)
   {
-
   }
        
 </script>

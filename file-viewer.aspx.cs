@@ -8,7 +8,7 @@ public partial class FileViewer : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            string dir = EasyGoal.Common.GetParamValue("dir");
+            string dir = EZGoal.Common.GetParamValue("dir");
             if (dir == null)
                 dir = "";
             var list = ListContents(dir);
@@ -56,7 +56,7 @@ public partial class FileViewer : System.Web.UI.Page
     public string ParentDirectory()
     {
         string parent = "";
-        string dir = EasyGoal.Common.GetParamValue("dir");
+        string dir = EZGoal.Common.GetParamValue("dir");
         if (dir != null)
         {
             parent = Path.GetDirectoryName(dir).Replace("\\", "/");

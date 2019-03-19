@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace EasyGoal
+namespace EZGoal
 {
     public static class Datetime
     {

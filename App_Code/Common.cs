@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Xml.Linq;
 
-namespace EasyGoal
+namespace EZGoal
 {
     public class Common
     {
@@ -78,7 +78,7 @@ namespace EasyGoal
         }
         public static string GenerateFilenameByTime(string extension)
         {
-            string filename = EasyGoal.Datetime.Now.ToString("yyyyMMdd-HHmmss-fffffff");
+            string filename = EZGoal.Datetime.Now.ToString("yyyyMMdd-HHmmss-fffffff");
             if (extension.StartsWith("."))
                 return filename + extension;
             return string.Format("{0}.{1}", filename, extension);
@@ -393,7 +393,15 @@ namespace EasyGoal
 
         public static void LogException(Exception e, bool xml)
         {
-            DateTime datetime = EasyGoal.Datetime.Now;
+            DateTime datetime;
+            if (EZGoal.Datetime.IsHighResolution)
+            {
+                datetime = EZGoal.Datetime.Now;
+            }
+            else
+            {
+                datetime = System.DateTime.Now;
+            }
             string logDirectory = Current.Server.MapPath("~/log/") + datetime.ToString("yyyy-MM");
             string logFilename = datetime.ToString("yyyyMMdd");
             string timeString = datetime.ToString("yyyy-MM-dd HH:mm:ss.fffffff");

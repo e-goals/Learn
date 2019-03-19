@@ -15,7 +15,7 @@ public class Network : System.Web.Services.WebService
     [WebMethod]
     public string HostAddress()
     {
-        return EasyGoal.Common.Current.Request.UserHostAddress;
+        return EZGoal.Common.Current.Request.UserHostAddress;
     }
 
 }

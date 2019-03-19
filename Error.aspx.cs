@@ -12,7 +12,7 @@ public partial class Error : System.Web.UI.Page
         if (lastError == null)
             return;
 
-        EasyGoal.Common.LogException(lastError.GetBaseException(), true);
+        EZGoal.Common.LogException(lastError.GetBaseException(), true);
 
         var httpException = lastError as HttpException;
         if (httpException != null)

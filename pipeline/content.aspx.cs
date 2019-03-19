@@ -1,6 +1,6 @@
-﻿using System;
+﻿using EZGoal;
+using System;
 using System.Web.UI;
-
 using Regex = System.Text.RegularExpressions.Regex;
 
 public partial class Content : BasePage

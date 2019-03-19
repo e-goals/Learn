@@ -1,8 +1,7 @@
 ﻿using System;
 
-namespace EasyGoal
+namespace EZGoal
 {
-
     public enum TimeUnit
     {
         Second, MilliSecond, MicroSecond, NanoSecond

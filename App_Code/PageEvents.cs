@@ -31,7 +31,7 @@ public class PageEvents
 
     public static void Trace(Page page)
     {
-        long counter = EasyGoal.PreciseCounter.Counter;
+        long counter = EZGoal.PreciseCounter.Counter;
         var st = new System.Diagnostics.StackTrace(true);
         var mb = st.GetFrame(1).GetMethod();
         dictionary.Add(counter, string.Format("{0}.{1}", mb.DeclaringType.FullName, mb.Name));
@@ -40,7 +40,7 @@ public class PageEvents
 
     public static void Trace(UserControl control)
     {
-        long counter = EasyGoal.PreciseCounter.Counter;
+        long counter = EZGoal.PreciseCounter.Counter;
         var st = new System.Diagnostics.StackTrace(true);
         var mb = st.GetFrame(1).GetMethod();
         dictionary.Add(counter, string.Format("{0}.{1}", mb.DeclaringType.FullName, mb.Name));

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 
-namespace EasyGoal
+namespace EZGoal
 {
     public class ExceptionModule : System.Web.IHttpModule
     {
@@ -22,7 +22,7 @@ namespace EasyGoal
             if (lastError == null)
                 return;
 
-            EasyGoal.Common.LogException(lastError.GetBaseException(), true);
+            EZGoal.Common.LogException(lastError.GetBaseException(), true);
 
             var httpException = lastError as HttpException;
             if (httpException != null)

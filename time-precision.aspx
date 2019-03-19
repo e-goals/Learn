@@ -25,7 +25,7 @@
       <%= Int64.MaxValue %><br />
       <hr />
       <script runat="server">
-        DateTime dtime0 = EasyGoal.Datetime.Now, dtime1 = EasyGoal.Datetime.UtcNow;
+        DateTime dtime0 = EZGoal.Datetime.Now, dtime1 = EZGoal.Datetime.UtcNow;
         DateTime dtime2 = DateTime.Now, dtime3 = DateTime.UtcNow;
       </script>
       <p class="note">以下的4个时间值，前两个来自EzGoal.Datetime连续获取，后两个来自System.DateTime连续获取</p>
@@ -34,8 +34,8 @@
       <%= dtime2.ToString("yyyyMMdd HH:mm:ss.fffffff") + ", " + dtime2.Ticks + ", " + dtime2.Kind %><br />
       <%= dtime3.ToString("yyyyMMdd HH:mm:ss.fffffff") + ", " + dtime3.Ticks + ", " + dtime3.Kind %><br />
       <br />
-      <span>通过GUID生成文件名：</span><%= EasyGoal.Common.GenerateFilenameByGUID("txt") %><br />
-      <span>通过Time生成文件名：</span><%= EasyGoal.Common.GenerateFilenameByTime("txt") %><br />
+      <span>通过GUID生成文件名：</span><%= EZGoal.Common.GenerateFilenameByGUID("txt") %><br />
+      <span>通过Time生成文件名：</span><%= EZGoal.Common.GenerateFilenameByTime("txt") %><br />
     </div>
   </form>
 </body>
