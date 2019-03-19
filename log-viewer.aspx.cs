@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 public partial class Log : System.Web.UI.Page
 {
@@ -11,7 +7,7 @@ public partial class Log : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            GridView1.DataSource = EasyGoal.Log.GetAll();
+            GridView1.DataSource = EasyGoal.Log.GetTop(50);
             Page.DataBind();
         }
     }

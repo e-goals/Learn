@@ -226,6 +226,20 @@ namespace EasyGoal
             return list;
         }
 
+        public static List<Log> GetTop(int count)
+        {
+            var list = new List<Log>();
+            string sqlText = "SELECT TOP (@Count) * FROM [Log] ORDER BY [ID] DESC";
+            SqlParameter parameter = new SqlParameter("@Count", count);
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                SqlDataReader dr = DBHelper.ExecuteReader(connection, CommandType.Text, sqlText, parameter);
+                while (dr.Read())
+                    list.Add(PopulateEntity(dr));
+            }
+            return list;
+        }
+
         public static List<Log> GetAllError()
         {
             var list = new List<Log>();
