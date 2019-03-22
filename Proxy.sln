@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Proxy", "http://localhost:62329", "{23FC2E58-844F-4B05-B663-A2A71ACC75E1}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Proxy", "http://localhost:66666", "{23FC2E58-844F-4B05-B663-A2A71ACC75E1}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"

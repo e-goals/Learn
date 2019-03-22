@@ -391,31 +391,23 @@ namespace EZGoal
 
         #region Log Exception
 
-        public static void LogException(Exception e, bool xml)
+        public static void LogException(Exception e, bool xmlFormat)
         {
-            DateTime datetime;
-            if (EZGoal.Datetime.IsHighResolution)
-            {
-                datetime = EZGoal.Datetime.Now;
-            }
-            else
-            {
-                datetime = System.DateTime.Now;
-            }
-            string logDirectory = Current.Server.MapPath("~/log/") + datetime.ToString("yyyy-MM");
-            string logFilename = datetime.ToString("yyyyMMdd");
+            DateTime datetime = EZGoal.Datetime.IsHighResolution ? EZGoal.Datetime.Now : System.DateTime.Now;
+            string directory = Current.Server.MapPath("~/log/") + datetime.ToString("yyyy-MM");
+            string filename = datetime.ToString("yyyyMMdd");
             string timeString = datetime.ToString("yyyy-MM-dd HH:mm:ss.fffffff");
-            if (!Directory.Exists(logDirectory))
-                Directory.CreateDirectory(logDirectory);
+            if (!Directory.Exists(directory))
+                Directory.CreateDirectory(directory);
 
-            if (xml)
+            if (xmlFormat)
             {
-                string logFile = string.Format("{0}/{1}.log.xml", logDirectory, logFilename);
+                string logFile = string.Format("{0}/{1}.log.xml", directory, filename);
                 LogExceptionToXML(e, timeString, logFile);
             }
             else
             {
-                string logFile = string.Format("{0}/{1}.log", logDirectory, logFilename);
+                string logFile = string.Format("{0}/{1}.log", directory, filename);
                 LogException(e, timeString, logFile);
             }
         }

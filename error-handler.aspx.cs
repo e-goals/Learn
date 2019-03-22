@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 
-public partial class Error : System.Web.UI.Page
+public partial class ErrorHandler : System.Web.UI.Page
 {
     protected int statusCode = 200;
     protected string statusText = "OK";

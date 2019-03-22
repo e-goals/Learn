@@ -3,13 +3,30 @@ using System.Data.SqlClient;
 
 namespace EZGoal
 {
-    public class Database
+    public static class Database
     {
-        private Database() { }
+        public static string ConnectionString { get; private set; }
+        public static string Version { get; private set; }
+        public static string VersionMajor { get; private set; }
+        public static string VersionMinor { get; private set; }
+        public static string VersionBuild { get; private set; }
+        public static string VersionRevision { get; private set; }
 
-        public static string ConnectionString
+        static Database()
         {
-            get { return ConfigurationManager.ConnectionStrings["SQL_Server"].ConnectionString; }
+            ConnectionString = ConfigurationManager.ConnectionStrings["SQL_Server"].ConnectionString;
+
+            SqlConnection connection = new SqlConnection(ConnectionString);
+            connection.Open();
+            Version = connection.ServerVersion;
+            connection.Close();
+            connection.Dispose();
+
+            string[] vDetails = Version.Split('.');
+            VersionMajor = vDetails[0];
+            VersionMinor = vDetails[1];
+            VersionBuild = vDetails[2];
+            VersionRevision = (vDetails.Length > 3) ? vDetails[3] : "";
         }
 
         public static SqlConnection GetConnection()

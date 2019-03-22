@@ -16,7 +16,7 @@
   void Application_Error(object sender, EventArgs e)
   {
     // 在出现未处理的错误时运行的代码
-    Server.Transfer("~/error.aspx");
+    Server.Transfer("~/error-handler.aspx");
   }
 
   void Session_Start(object sender, EventArgs e)
@@ -34,50 +34,23 @@
 
   void Application_BeginRequest(object sender, EventArgs e)
   {
-   // HttpContext.Current.Items["RequestCounter"] = System.Diagnostics.Stopwatch.GetTimestamp();
-    
-    if (EZGoal.Datetime.IsHighResolution)
-    {
-      HttpContext.Current.Items["RequestCounter"] = EZGoal.PreciseCounter.Counter;
-    }
-    else
-    {
-      HttpContext.Current.Items["RequestCounter"] = System.DateTime.Now.Ticks;
-    }
+    HttpContext.Current.Items["BeginRequestCounter"] = EZGoal.PreciseCounter.Counter;
     PageEvents.Reset();
   }
 
   void Application_EndRequest(object sender, EventArgs e)
   {
-    if (EZGoal.Datetime.IsHighResolution)
+    long eCounter = EZGoal.PreciseCounter.Counter;
+    long bCounter = (long)HttpContext.Current.Items["BeginRequestCounter"];
+    decimal timetaken = EZGoal.PreciseCounter.TimeSpan(bCounter, eCounter, EZGoal.TimeUnit.MilliSecond);
+    var log = new EZGoal.Log(decimal.Round(timetaken, 3));
+    try
     {
-      long currentCounter = EZGoal.PreciseCounter.Counter;
-      long requestCounter = (long)HttpContext.Current.Items["RequestCounter"];
-      decimal timetaken = EZGoal.PreciseCounter.TimeSpan(requestCounter, currentCounter, EZGoal.TimeUnit.MilliSecond);
-      var log = new EZGoal.Log(decimal.Round(timetaken, 3));
-      try
-      {
-        log.Insert();
-      }
-      catch (Exception exception)
-      {
-        EZGoal.Common.LogException(exception, true);
-      }
+      log.Write();
     }
-    else
+    catch (Exception exception)
     {
-      long currentCounter = DateTime.Now.Ticks;
-      long requestCounter = (long)HttpContext.Current.Items["RequestCounter"];
-      decimal timetaken = EZGoal.PreciseCounter.TimeSpan(requestCounter, currentCounter, EZGoal.TimeUnit.MilliSecond);
-      var log = new EZGoal.Log(decimal.Round(timetaken, 3));
-      try
-      {
-        log.Insert();
-      }
-      catch (Exception exception)
-      {
-        EZGoal.Common.LogException(exception, true);
-      }
+      EZGoal.Common.LogException(exception, true);
     }
   }
 

@@ -7,7 +7,12 @@ public partial class TimePrecision : System.Web.UI.Page
     private void WriteLine(string text)
     {
         outputBuilder.Append(text);
-        outputBuilder.Append("<br />");
+        outputBuilder.Append("<br />");        
+    }
+
+    private void Write(string format, params object[] args)
+    {
+        outputBuilder.AppendFormat(format, args);
     }
 
     private void WriteLine(string format, params object[] args)
@@ -33,6 +38,7 @@ public partial class TimePrecision : System.Web.UI.Page
         t2 = System.DateTime.Now;
         t3 = EZGoal.Datetime.Now;
         t4 = EZGoal.Datetime.Now;
+        Write("<hr /><p class='note'>以下4个时间连续读取，前两个来自System.DateTime，后两个来自EZGoal.Datetime</p>");
         WriteLine(t1.ToString("yyyy-MM-dd HH:mm:ss.fffffff"));
         WriteLine(t2.ToString("yyyy-MM-dd HH:mm:ss.fffffff"));
         WriteLine(t3.ToString("yyyy-MM-dd HH:mm:ss.fffffff"));
@@ -65,26 +71,33 @@ public partial class TimePrecision : System.Web.UI.Page
     private void TestPrecisions()
     {
         double precision0 = 0, precision1 = 0, precision2 = 0;
-        int times = 100;
+        int times0 = 100, times1 = 300, times2 = 1000;
 
-        for (int i = 0; i < times; i++)
+        for (int i = 0; i < times0; i++)
         {
             precision0 += TestPrecision0();
         }
 
-        for (int i = 0; i < times; i++)
+        for (int i = 0; i < times1; i++)
         {
             precision1 += TestPrecision1();
         }
 
-        for (int i = 0; i < times; i++)
+        for (int i = 0; i < times2; i++)
         {
             precision2 += TestPrecision2();
         }
-
-        WriteLine("System.Environment.TickCount: {0:0.000} ms", precision0 / times);
-        WriteLine("System.DateTime.Now.Ticks: {0:0.0000} ms", precision1 / times);
-        WriteLine("EzGoal.Datetime.Now.Ticks: {0:0.0} μs", precision2 / times);
+        Write("<hr /><p class='note'>时间分辨度</p>");
+        WriteLine("System.Environment.TickCount: {0:0.000} milliseconds (ms)", precision0 / times0);
+        WriteLine("System.DateTime.Now.Ticks: {0:0.0000} milliseconds (ms)", precision1 / times1);
+        if (precision2 / times2 < 1000)
+        {
+            WriteLine("EZGoal.Datetime.Now.Ticks: {0:0.0} microseconds (μs)", precision2 / times2);
+        }
+        else
+        {
+            WriteLine("EZGoal.Datetime.Now.Ticks: {0:0.0000} milliseconds (ms)", precision2 / times2 / 1000.0);
+        }
     }
 
     private int TestPrecision0()

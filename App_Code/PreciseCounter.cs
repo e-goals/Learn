@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace EZGoal
 {
@@ -9,7 +10,13 @@ namespace EZGoal
 
     public class PreciseCounter
     {
-        public static long Frequency;
+        private static long frequency;
+        public static long Frequency
+        {
+            get { return frequency; }
+        }
+
+        public static bool IsHighResolution { get; private set; }
 
         private long COUNTER_0 = 0L;
         private long COUNTER_1 = 0L;
@@ -17,17 +24,22 @@ namespace EZGoal
         private long currentCounter;
         private bool isRunning = false;
 
-        [System.Runtime.InteropServices.DllImport("Kernel32.dll")]
-        private static extern bool QueryPerformanceCounter(out long counter);
+        [DllImport("Kernel32.dll", EntryPoint = "QueryPerformanceCounter")]
+        private static extern bool GetCounter(out long counter);
 
-        [System.Runtime.InteropServices.DllImport("Kernel32.dll")]
-        private static extern bool QueryPerformanceFrequency(out long frequency);
+        [DllImport("Kernel32.dll", EntryPoint = "QueryPerformanceFrequency")]
+        private static extern bool GetFrequency(out long frequency);
 
         static PreciseCounter()
         {
-            if (!QueryPerformanceFrequency(out Frequency))
+            if (!GetFrequency(out frequency))
             {
-                throw new System.ComponentModel.Win32Exception();
+                IsHighResolution = false;
+                // throw new System.ComponentModel.Win32Exception();
+            }
+            else
+            {
+                IsHighResolution = true;
             }
         }
 
@@ -36,32 +48,32 @@ namespace EZGoal
             get
             {
                 long counter;
-                QueryPerformanceCounter(out counter);
+                GetCounter(out counter);
                 return counter;
             }
         }
 
         public PreciseCounter()
         {
-            QueryPerformanceCounter(out initialCounter);
+            GetCounter(out initialCounter);
         }
 
         public void Reset()
         {
-            QueryPerformanceCounter(out initialCounter);
+            GetCounter(out initialCounter);
         }
 
         public void Starting()
         {
             isRunning = true;
-            QueryPerformanceCounter(out COUNTER_0);
+            GetCounter(out COUNTER_0);
         }
 
         public void Stopping()
         {
             if (isRunning)
             {
-                QueryPerformanceCounter(out COUNTER_1);
+                GetCounter(out COUNTER_1);
                 isRunning = false;
             }
             else
@@ -74,7 +86,7 @@ namespace EZGoal
         {
             get
             {
-                QueryPerformanceCounter(out currentCounter);
+                GetCounter(out currentCounter);
                 return currentCounter - initialCounter;
             }
         }
@@ -87,23 +99,23 @@ namespace EZGoal
                 {
                     return COUNTER_1 - COUNTER_0;
                 }
-                throw new Exception("Must call Stopping() before calling TimeInSpan().");
+                throw new Exception("Must call Stopping() before calling SpanTicks().");
             }
         }
 
         public decimal LifeTime(TimeUnit unit)
         {
-            return (((decimal)LifeTicks * Multiplier(unit)) / (decimal)Frequency);
+            return (((decimal)LifeTicks * Multiplier(unit)) / (decimal)frequency);
         }
 
         public decimal SpanTime(TimeUnit unit)
         {
-            return (((decimal)SpanTicks * Multiplier(unit)) / (decimal)Frequency);
+            return (((decimal)SpanTicks * Multiplier(unit)) / (decimal)frequency);
         }
 
         public static decimal TimeSpan(long counter0, long counter1, TimeUnit unit)
         {
-            return (((decimal)(counter1 - counter0) * Multiplier(unit)) / (decimal)Frequency);
+            return (((decimal)(counter1 - counter0) * Multiplier(unit)) / (decimal)frequency);
         }
 
         private static decimal Multiplier(TimeUnit unit)
