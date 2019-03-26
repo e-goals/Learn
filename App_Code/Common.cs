@@ -276,32 +276,32 @@ namespace EZGoal
             return "Public Network";
         }
 
-        public static bool IsValidIpAddress(string ipString)
+        public static bool IsValidIPv4Address(string ipString)
         {
             string pattern = @"^((?:(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d))$";
-            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(pattern);
+            Regex regex = new Regex(pattern);
             return regex.IsMatch(ipString);
         }
 
-        public static string FormatIpAddress(string ipAddress)
+        public static string FormatIPv4Address(string ipAddress)
         {
-            if (!IsValidIpAddress(ipAddress))
+            if (!IsValidIPv4Address(ipAddress))
                 return ipAddress;
-            string[] ipSections = ipAddress.Split('.');
+            string[] parts = ipAddress.Split('.');
             for (int i = 0; i < 4; i++)
-                ipSections[i] = ipSections[i].PadLeft(3, '0');
-            return string.Format("{0}.{1}.{2}.{3}", ipSections[0], ipSections[1], ipSections[2], ipSections[3]);
+                parts[i] = parts[i].PadLeft(3, '0');
+            return string.Format("{0}.{1}.{2}.{3}", parts[0], parts[1], parts[2], parts[3]);
         }
 
-        public static string RegainIpAddress(string formattedIpAddress)
+        public static string RegainIPv4Address(string formattedIpAddress)
         {
-            return System.Text.RegularExpressions.Regex.Replace(formattedIpAddress, @"\.0{1,2}", ".").TrimStart('0');
+            return Regex.Replace(formattedIpAddress, @"\.0{1,2}", ".").TrimStart('0');
         }
 
         public static bool IsIPv4Address(string ipAddress)
         {
             string regex = @"^(?:(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){4}$";
-            return System.Text.RegularExpressions.Regex.IsMatch(ipAddress + ".", regex);
+            return Regex.IsMatch(ipAddress + ".", regex);
         }
 
         public static bool IsLoopbackAddress(string ipAddress)
@@ -309,22 +309,24 @@ namespace EZGoal
             if (ipAddress == "::1")
                 return true;
             string ipv4Regex = @"^127(?:\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)){3}$";
-            return System.Text.RegularExpressions.Regex.IsMatch(ipAddress, ipv4Regex);
+            return Regex.IsMatch(ipAddress, ipv4Regex);
         }
 
         public static byte[] SplitIPv4Address(string ipAddress)
         {
-            byte[] sections = { 0, 0, 0, 0 };
+            byte[] parts = { 0, 0, 0, 0 };
             Regex regex = new Regex(@"^(?:(?<section>25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){4}$");
             Match match = regex.Match(ipAddress + ".");
             if (match.Success)
             {
                 CaptureCollection captures = match.Groups["section"].Captures;
                 for (int i = 0; i < captures.Count; i++)
-                    sections[i] = byte.Parse(captures[i].Value);
+                {
+                    parts[i] = byte.Parse(captures[i].Value);
+                }
             }
-            else { sections = null; }
-            return sections;
+            else { parts = null; }
+            return parts;
         }
 
         public static string GetMACAddressByIPAddress(string ipAddress)
@@ -385,6 +387,36 @@ namespace EZGoal
                 }
             }
             return netAdapter;
+        }
+
+        public static UInt32 IPv4AddressToInteger(string address)
+        {
+            uint[] parts = { 0u, 0u, 0u, 0u };
+            Regex regex = new Regex(@"^(?:(?<section>25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)\.){4}$");
+            Match match = regex.Match(address + ".");
+            if (match.Success)
+            {
+                CaptureCollection captures = match.Groups["section"].Captures;
+                for (int i = 0; i < captures.Count; i++)
+                {
+                    parts[i] = uint.Parse(captures[i].Value);
+                }
+                return (parts[0] << 0x18) | (parts[1] << 0x10) | (parts[2] << 0x08) | (parts[3]);
+            }
+            else
+            {
+                return 0u;
+            }
+        }
+
+        public static String IPv4IntegerToAddress(UInt32 value)
+        {
+            uint[] parts = { 0u, 0u, 0u, 0u };
+            parts[0] = (value & 0xFF000000) >> 0x18;
+            parts[1] = (value & 0x00FF0000) >> 0x10;
+            parts[2] = (value & 0x0000FF00) >> 0x08;
+            parts[3] = (value & 0x000000FF);
+            return string.Format("{0}.{1}.{2}.{3}", parts[0], parts[1], parts[2], parts[3]);
         }
 
         #endregion Hardware & IPAddress

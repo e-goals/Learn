@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.UI;
 
-public class PageEvents
+public static class PageEvents
 {
     private static Dictionary<long, string> dictionary = new Dictionary<long, string>();
 
@@ -22,7 +22,7 @@ public class PageEvents
         }
     }
 
-    private PageEvents() { }
+    static PageEvents() { }
 
     public static void Reset()
     {

@@ -38,6 +38,7 @@
       <%= dtime3.ToString("yyyyMMdd HH:mm:ss.fffffff") + ", " + dtime3.Ticks + ", " + dtime3.Kind %><br />
       <br />
       <%= EZGoal.Database.Version %>
+      <br />
     </div>
   </form>
 </body>
