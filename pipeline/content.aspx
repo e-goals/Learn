@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="Master.master" AutoEventWireup="true" CodeFile="content.aspx.cs" Inherits="Content" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="Master.master" AutoEventWireup="true" CodeFile="content.aspx.cs" Inherits="Content" Trace="true" %>
 
 <asp:Content ID="ContentHead" ContentPlaceHolderID="cph_head" runat="server">
   <style type="text/css">

@@ -68,6 +68,5 @@ namespace EZGoal
             base.OnSaveStateComplete(e);
             PageEvents.Trace(this);
         }
-
     }
 }
