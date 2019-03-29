@@ -1,0 +1,14 @@
+html, body, form { border: 0 none; height: 100%; margin: 0; padding: 0; width: 100%; }
+table { border: 0 none; border-collapse: collapse; margin: 0; padding: 0; }
+tr, td { border: 0 none; margin: 0; padding: 0; }
+
+table#progressDisplay { height: 100%; margin: 0 auto; vertical-align: middle; width: 96%; }
+  table#progressDisplay #barTd { width: 100%; }
+#statusDiv { border: 1px solid #69F; height: 1.5em; margin: 0; padding: 0; position: relative; text-align: center; width: 100%; z-index: 1; }
+#barDiv, #barDetailsDiv, #smoothBar { border: 0 none; height: 100%; margin: 0; padding: 0; position: absolute; top: 0; left: 0; width: 75%; z-index: -1; }
+
+.ProgressDisplay { color: #369; font-family: 'Times New Roman',sans-serif; font-weight: bold; line-height: 1.5em; }
+  .ProgressDisplay .DetailsSpan { font-weight: normal; white-space: nowrap; }
+  .ProgressDisplay .ProgressBar { background-color: #9CF; }
+  .ProgressDisplay .ImageButton { background-color: inherit; border: 0 none; margin: 0; padding: 0; }
+    .ProgressDisplay .ImageButton img { border: 1px solid #F90; height: 1.5em; margin: 0 1px 0 2px; padding: 0; vertical-align: top; }

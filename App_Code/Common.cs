@@ -476,7 +476,7 @@ namespace EZGoal
             {
                 document = new XDocument();
                 document.Declaration = new XDeclaration("1.0", "utf-8", null);
-                document.Add(new XProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" href='/style/log.xsl'"));
+                document.Add(new XProcessingInstruction("xml-stylesheet", "type=\"text/xsl\" href='../../style/log.xsl'"));
                 rootNode = new XElement("Log");
                 document.Add(rootNode);
             }
@@ -484,6 +484,12 @@ namespace EZGoal
             {
                 document = XDocument.Load(logFile);
                 rootNode = document.Root;
+            }
+
+            XElement messageNode = new XElement("Message");
+            foreach (string line in Regex.Split(e.Message, "\r\n"))
+            {
+                messageNode.Add(new XElement("Line", line.Trim()));
             }
 
             XElement traceNode = new XElement("StackTrace");
@@ -498,8 +504,9 @@ namespace EZGoal
                     new XElement("ClientIP", Request.UserHostAddress),
                     new XElement("ClientUA", Request.UserAgent),
                     new XElement("ExactURL", Request.Url.ToString()),
-                    new XElement("Message", e.Message),
-                    new XElement("Source", e.Source), traceNode
+                    messageNode,
+                    new XElement("Source", e.Source), 
+                    traceNode
                     )
                 );
             document.Save(logFile);

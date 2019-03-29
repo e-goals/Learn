@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href='../../style/log.xsl'?>
+<Log>
+  <Exception Time="2019-03-29 15:39:59.6566131" Type="Brettle.Web.NeatUpload.NonfilePortionTooLargeException">
+    <ClientIP>::1</ClientIP>
+    <ClientUA>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0</ClientUA>
+    <ExactURL>http://localhost:63061/EZGoal/neatupload.aspx</ExactURL>
+    <Message>
+      <Line>Nonfile portion &gt; 4194304 bytes</Line>
+    </Message>
+    <Source>Brettle.Web.NeatUpload</Source>
+    <StackTrace>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.WriteParsedToOutputStream() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 340</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.CopyUntilBoundary() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 375</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.ParseOrThrow() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 568</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.ParseMultipart() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 489</Line>
+      <Line>在 Brettle.Web.NeatUpload.UploadHttpModule.WaitForUploadToComplete() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\UploadHttpModule.cs:行号 246</Line>
+      <Line>在 Brettle.Web.NeatUpload.UploadHttpModule.Application_ResolveRequestCache(Object sender, EventArgs e) 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\UploadHttpModule.cs:行号 559</Line>
+      <Line>在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()</Line>
+      <Line>在 System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)</Line>
+      <Line>在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)</Line>
+    </StackTrace>
+  </Exception>
+  <Exception Time="2019-03-29 17:53:19.2515871" Type="Brettle.Web.NeatUpload.NonfilePortionTooLargeException">
+    <ClientIP>::1</ClientIP>
+    <ClientUA>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0</ClientUA>
+    <ExactURL>http://localhost:63061/EZGoal/neatupload.aspx</ExactURL>
+    <Message>
+      <Line>Nonfile portion &gt; 4194304 bytes</Line>
+    </Message>
+    <Source>Brettle.Web.NeatUpload</Source>
+    <StackTrace>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.WriteParsedToOutputStream() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 340</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.CopyUntilBoundary() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 375</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.ParseOrThrow() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 568</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.ParseMultipart() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 489</Line>
+      <Line>在 Brettle.Web.NeatUpload.UploadHttpModule.WaitForUploadToComplete() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\UploadHttpModule.cs:行号 246</Line>
+      <Line>在 Brettle.Web.NeatUpload.UploadHttpModule.Application_ResolveRequestCache(Object sender, EventArgs e) 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\UploadHttpModule.cs:行号 559</Line>
+      <Line>在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()</Line>
+      <Line>在 System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)</Line>
+      <Line>在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)</Line>
+    </StackTrace>
+  </Exception>
+  <Exception Time="2019-03-29 17:53:32.7113229" Type="Brettle.Web.NeatUpload.NonfilePortionTooLargeException">
+    <ClientIP>::1</ClientIP>
+    <ClientUA>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0</ClientUA>
+    <ExactURL>http://localhost:63061/EZGoal/neatupload.aspx</ExactURL>
+    <Message>
+      <Line>Nonfile portion &gt; 4194304 bytes</Line>
+    </Message>
+    <Source>Brettle.Web.NeatUpload</Source>
+    <StackTrace>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.WriteParsedToOutputStream() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 340</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.CopyUntilBoundary() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 375</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.ParseOrThrow() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 568</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.ParseMultipart() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 489</Line>
+      <Line>在 Brettle.Web.NeatUpload.UploadHttpModule.WaitForUploadToComplete() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\UploadHttpModule.cs:行号 246</Line>
+      <Line>在 Brettle.Web.NeatUpload.UploadHttpModule.Application_ResolveRequestCache(Object sender, EventArgs e) 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\UploadHttpModule.cs:行号 559</Line>
+      <Line>在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()</Line>
+      <Line>在 System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)</Line>
+      <Line>在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)</Line>
+    </StackTrace>
+  </Exception>
+  <Exception Time="2019-03-29 17:55:33.4543126" Type="Brettle.Web.NeatUpload.NonfilePortionTooLargeException">
+    <ClientIP>::1</ClientIP>
+    <ClientUA>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0</ClientUA>
+    <ExactURL>http://localhost:63061/EZGoal/neatupload.aspx</ExactURL>
+    <Message>
+      <Line>Nonfile portion &gt; 4194304 bytes</Line>
+    </Message>
+    <Source>Brettle.Web.NeatUpload</Source>
+    <StackTrace>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.WriteParsedToOutputStream() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 340</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.CopyUntilBoundary() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 375</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.ParseOrThrow() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 568</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.ParseMultipart() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 489</Line>
+      <Line>在 Brettle.Web.NeatUpload.UploadHttpModule.WaitForUploadToComplete() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\UploadHttpModule.cs:行号 246</Line>
+      <Line>在 Brettle.Web.NeatUpload.UploadHttpModule.Application_ResolveRequestCache(Object sender, EventArgs e) 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\UploadHttpModule.cs:行号 559</Line>
+      <Line>在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()</Line>
+      <Line>在 System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)</Line>
+      <Line>在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)</Line>
+    </StackTrace>
+  </Exception>
+  <Exception Time="2019-03-29 17:59:57.1674470" Type="Brettle.Web.NeatUpload.NonfilePortionTooLargeException">
+    <ClientIP>::1</ClientIP>
+    <ClientUA>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0</ClientUA>
+    <ExactURL>http://localhost:63061/EZGoal/neatupload.aspx</ExactURL>
+    <Message>
+      <Line>Nonfile portion &gt; 4194304 bytes</Line>
+    </Message>
+    <Source>Brettle.Web.NeatUpload</Source>
+    <StackTrace>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.WriteParsedToOutputStream() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 340</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.CopyUntilBoundary() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 375</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.ParseOrThrow() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 568</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.ParseMultipart() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 489</Line>
+      <Line>在 Brettle.Web.NeatUpload.UploadHttpModule.WaitForUploadToComplete() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\UploadHttpModule.cs:行号 246</Line>
+      <Line>在 Brettle.Web.NeatUpload.UploadHttpModule.Application_ResolveRequestCache(Object sender, EventArgs e) 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\UploadHttpModule.cs:行号 559</Line>
+      <Line>在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()</Line>
+      <Line>在 System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)</Line>
+      <Line>在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)</Line>
+    </StackTrace>
+  </Exception>
+  <Exception Time="2019-03-29 18:04:25.6082546" Type="Brettle.Web.NeatUpload.NonfilePortionTooLargeException">
+    <ClientIP>::1</ClientIP>
+    <ClientUA>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0</ClientUA>
+    <ExactURL>http://localhost:63061/EZGoal/neatupload.aspx</ExactURL>
+    <Message>
+      <Line>Nonfile portion &gt; 4194304 bytes</Line>
+    </Message>
+    <Source>Brettle.Web.NeatUpload</Source>
+    <StackTrace>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.WriteParsedToOutputStream() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 340</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.CopyUntilBoundary() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 375</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.ParseOrThrow() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 568</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.ParseMultipart() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 489</Line>
+      <Line>在 Brettle.Web.NeatUpload.UploadHttpModule.WaitForUploadToComplete() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\UploadHttpModule.cs:行号 246</Line>
+      <Line>在 Brettle.Web.NeatUpload.UploadHttpModule.Application_ResolveRequestCache(Object sender, EventArgs e) 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\UploadHttpModule.cs:行号 559</Line>
+      <Line>在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()</Line>
+      <Line>在 System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)</Line>
+      <Line>在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)</Line>
+    </StackTrace>
+  </Exception>
+  <Exception Time="2019-03-29 18:04:25.6438984" Type="System.Data.SqlClient.SqlException">
+    <ClientIP>::1</ClientIP>
+    <ClientUA>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0</ClientUA>
+    <ExactURL>http://localhost:63061/EZGoal/neatupload.aspx</ExactURL>
+    <Message>
+      <Line>将 numeric 转换为数据类型 numeric 时出现算术溢出错误。</Line>
+      <Line>语句已终止。</Line>
+    </Message>
+    <Source>.Net SqlClient Data Provider</Source>
+    <StackTrace>
+      <Line>在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)</Line>
+      <Line>在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)</Line>
+      <Line>在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)</Line>
+      <Line>在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean&amp; dataReady)</Line>
+      <Line>在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)</Line>
+      <Line>在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task&amp; task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)</Line>
+      <Line>在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task&amp; task, Boolean&amp; usedCache, Boolean asyncWrite, Boolean inRetry)</Line>
+      <Line>在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean&amp; usedCache, Boolean asyncWrite, Boolean inRetry)</Line>
+      <Line>在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()</Line>
+      <Line>在 Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteNonQuery(SqlConnection connection, CommandType commandType, String commandText, SqlParameter[] commandParameters) 位置 e:\ASP.NET Workspace\EZGoal\App_Code\_SQLHelper.cs:行号 335</Line>
+      <Line>在 EZGoal.Log.Write() 位置 e:\ASP.NET Workspace\EZGoal\App_Code\Log.cs:行号 131</Line>
+      <Line>在 ASP.global_asax.Application_EndRequest(Object sender, EventArgs e) 位置 e:\ASP.NET Workspace\EZGoal\Global.asax:行号 49</Line>
+    </StackTrace>
+  </Exception>
+  <Exception Time="2019-03-29 18:11:11.3679312" Type="System.Xml.XmlException">
+    <ClientIP>::1</ClientIP>
+    <ClientUA>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0</ClientUA>
+    <ExactURL>http://localhost:63061/EZGoal/neatupload.aspx</ExactURL>
+    <Message>
+      <Line>Unrecognized unqualified attribute: executionTimeout</Line>
+    </Message>
+    <Source>Brettle.Web.NeatUpload</Source>
+    <StackTrace>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.Config.CreateFromConfigSection(Config parent, XmlNode section) 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\Config.cs:行号 241</Line>
+      <Line>在 Brettle.Web.NeatUpload.ConfigSectionHandler.Create(Object parent, Object context, XmlNode section) 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\ConfigSectionHandler.cs:行号 38</Line>
+      <Line>在 System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.CreateSectionImpl(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord, SectionRecord sectionRecord, SectionInput sectionInput, Object parentConfig, ConfigXmlReader reader)</Line>
+      <Line>在 System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.CreateSectionWithRestrictedPermissions(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord, SectionRecord sectionRecord, SectionInput sectionInput, Object parentConfig, ConfigXmlReader reader)</Line>
+      <Line>在 System.Configuration.RuntimeConfigurationRecord.CreateSection(Boolean inputIsTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, SectionInput sectionInput, Object parentConfig, ConfigXmlReader reader)</Line>
+      <Line>在 System.Configuration.BaseConfigurationRecord.CallCreateSection(Boolean inputIsTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, SectionInput sectionInput, Object parentConfig, ConfigXmlReader reader)</Line>
+    </StackTrace>
+  </Exception>
+  <Exception Time="2019-03-29 18:11:19.1312039" Type="System.Xml.XmlException">
+    <ClientIP>::1</ClientIP>
+    <ClientUA>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0</ClientUA>
+    <ExactURL>http://localhost:63061/EZGoal/neatupload.aspx</ExactURL>
+    <Message>
+      <Line>Unrecognized unqualified attribute: executionTimeout</Line>
+    </Message>
+    <Source>Brettle.Web.NeatUpload</Source>
+    <StackTrace>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.Config.CreateFromConfigSection(Config parent, XmlNode section) 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\Config.cs:行号 241</Line>
+      <Line>在 Brettle.Web.NeatUpload.ConfigSectionHandler.Create(Object parent, Object context, XmlNode section) 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\ConfigSectionHandler.cs:行号 38</Line>
+      <Line>在 System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.CreateSectionImpl(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord, SectionRecord sectionRecord, SectionInput sectionInput, Object parentConfig, ConfigXmlReader reader)</Line>
+      <Line>在 System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.CreateSectionWithRestrictedPermissions(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord, SectionRecord sectionRecord, SectionInput sectionInput, Object parentConfig, ConfigXmlReader reader)</Line>
+      <Line>在 System.Configuration.RuntimeConfigurationRecord.CreateSection(Boolean inputIsTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, SectionInput sectionInput, Object parentConfig, ConfigXmlReader reader)</Line>
+      <Line>在 System.Configuration.BaseConfigurationRecord.CallCreateSection(Boolean inputIsTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, SectionInput sectionInput, Object parentConfig, ConfigXmlReader reader)</Line>
+    </StackTrace>
+  </Exception>
+  <Exception Time="2019-03-29 18:11:23.2862879" Type="System.Xml.XmlException">
+    <ClientIP>::1</ClientIP>
+    <ClientUA>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0</ClientUA>
+    <ExactURL>http://localhost:63061/EZGoal/neatupload.aspx</ExactURL>
+    <Message>
+      <Line>Unrecognized unqualified attribute: executionTimeout</Line>
+    </Message>
+    <Source>Brettle.Web.NeatUpload</Source>
+    <StackTrace>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.Config.CreateFromConfigSection(Config parent, XmlNode section) 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\Config.cs:行号 241</Line>
+      <Line>在 Brettle.Web.NeatUpload.ConfigSectionHandler.Create(Object parent, Object context, XmlNode section) 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\ConfigSectionHandler.cs:行号 38</Line>
+      <Line>在 System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.CreateSectionImpl(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord, SectionRecord sectionRecord, SectionInput sectionInput, Object parentConfig, ConfigXmlReader reader)</Line>
+      <Line>在 System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.CreateSectionWithRestrictedPermissions(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord, SectionRecord sectionRecord, SectionInput sectionInput, Object parentConfig, ConfigXmlReader reader)</Line>
+      <Line>在 System.Configuration.RuntimeConfigurationRecord.CreateSection(Boolean inputIsTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, SectionInput sectionInput, Object parentConfig, ConfigXmlReader reader)</Line>
+      <Line>在 System.Configuration.BaseConfigurationRecord.CallCreateSection(Boolean inputIsTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, SectionInput sectionInput, Object parentConfig, ConfigXmlReader reader)</Line>
+    </StackTrace>
+  </Exception>
+  <Exception Time="2019-03-29 18:11:44.4024743" Type="System.Xml.XmlException">
+    <ClientIP>::1</ClientIP>
+    <ClientUA>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0</ClientUA>
+    <ExactURL>http://localhost:63061/EZGoal/neatupload.aspx</ExactURL>
+    <Message>
+      <Line>Unrecognized unqualified attribute: executionTimeout</Line>
+    </Message>
+    <Source>Brettle.Web.NeatUpload</Source>
+    <StackTrace>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.Config.CreateFromConfigSection(Config parent, XmlNode section) 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\Config.cs:行号 241</Line>
+      <Line>在 Brettle.Web.NeatUpload.ConfigSectionHandler.Create(Object parent, Object context, XmlNode section) 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\ConfigSectionHandler.cs:行号 38</Line>
+      <Line>在 System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.CreateSectionImpl(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord, SectionRecord sectionRecord, SectionInput sectionInput, Object parentConfig, ConfigXmlReader reader)</Line>
+      <Line>在 System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.CreateSectionWithRestrictedPermissions(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord, SectionRecord sectionRecord, SectionInput sectionInput, Object parentConfig, ConfigXmlReader reader)</Line>
+      <Line>在 System.Configuration.RuntimeConfigurationRecord.CreateSection(Boolean inputIsTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, SectionInput sectionInput, Object parentConfig, ConfigXmlReader reader)</Line>
+      <Line>在 System.Configuration.BaseConfigurationRecord.CallCreateSection(Boolean inputIsTrusted, FactoryRecord factoryRecord, SectionRecord sectionRecord, SectionInput sectionInput, Object parentConfig, ConfigXmlReader reader)</Line>
+    </StackTrace>
+  </Exception>
+  <Exception Time="2019-03-29 18:15:55.6029316" Type="System.OutOfMemoryException">
+    <ClientIP>::1</ClientIP>
+    <ClientUA>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0</ClientUA>
+    <ExactURL>http://localhost:63061/EZGoal/neatupload.aspx</ExactURL>
+    <Message>
+      <Line>引发类型为“System.OutOfMemoryException”的异常。</Line>
+    </Message>
+    <Source>mscorlib</Source>
+    <StackTrace>
+      <Line>在 System.IO.MemoryStream.set_Capacity(Int32 value)</Line>
+      <Line>在 System.IO.MemoryStream.EnsureCapacity(Int32 value)</Line>
+      <Line>在 System.IO.MemoryStream.Write(Byte[] buffer, Int32 offset, Int32 count)</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.WriteParsedToOutputStream() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 313</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.CopyUntilBoundary() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 375</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.ParseOrThrow() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 568</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.ParseMultipart() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 489</Line>
+      <Line>在 Brettle.Web.NeatUpload.UploadHttpModule.WaitForUploadToComplete() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\UploadHttpModule.cs:行号 246</Line>
+      <Line>在 Brettle.Web.NeatUpload.UploadHttpModule.Application_ResolveRequestCache(Object sender, EventArgs e) 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\UploadHttpModule.cs:行号 559</Line>
+      <Line>在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()</Line>
+      <Line>在 System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)</Line>
+      <Line>在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)</Line>
+    </StackTrace>
+  </Exception>
+  <Exception Time="2019-03-29 18:16:09.9198331" Type="System.OutOfMemoryException">
+    <ClientIP>::1</ClientIP>
+    <ClientUA>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0</ClientUA>
+    <ExactURL>http://localhost:63061/EZGoal/neatupload.aspx</ExactURL>
+    <Message>
+      <Line>引发类型为“System.OutOfMemoryException”的异常。</Line>
+    </Message>
+    <Source>mscorlib</Source>
+    <StackTrace>
+      <Line>在 System.IO.MemoryStream.ToArray()</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.ParseOrThrow() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 734</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.ParseMultipart() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 489</Line>
+      <Line>在 Brettle.Web.NeatUpload.UploadHttpModule.WaitForUploadToComplete() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\UploadHttpModule.cs:行号 246</Line>
+      <Line>在 Brettle.Web.NeatUpload.UploadHttpModule.Application_ResolveRequestCache(Object sender, EventArgs e) 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\UploadHttpModule.cs:行号 559</Line>
+      <Line>在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()</Line>
+      <Line>在 System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)</Line>
+      <Line>在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)</Line>
+    </StackTrace>
+  </Exception>
+  <Exception Time="2019-03-29 18:20:42.4074225" Type="System.OutOfMemoryException">
+    <ClientIP>127.0.0.1</ClientIP>
+    <ClientUA>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0</ClientUA>
+    <ExactURL>http://localhost:63061/EZGoal/neatupload.aspx</ExactURL>
+    <Message>
+      <Line>引发类型为“System.OutOfMemoryException”的异常。</Line>
+    </Message>
+    <Source>mscorlib</Source>
+    <StackTrace>
+      <Line>在 System.IO.MemoryStream.set_Capacity(Int32 value)</Line>
+      <Line>在 System.IO.MemoryStream.EnsureCapacity(Int32 value)</Line>
+      <Line>在 System.IO.MemoryStream.Write(Byte[] buffer, Int32 offset, Int32 count)</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.WriteParsedToOutputStream() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 313</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.CopyUntilBoundary() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 375</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.ParseOrThrow() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 568</Line>
+      <Line>在 Brettle.Web.NeatUpload.Internal.Module.FilteringWorkerRequest.ParseMultipart() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload.Internal.Module\FilteringWorkerRequest.cs:行号 489</Line>
+      <Line>在 Brettle.Web.NeatUpload.UploadHttpModule.WaitForUploadToComplete() 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\UploadHttpModule.cs:行号 246</Line>
+      <Line>在 Brettle.Web.NeatUpload.UploadHttpModule.Application_ResolveRequestCache(Object sender, EventArgs e) 位置 D:\__projects\Brettle\NeatUpload\dotnet\src\Brettle.Web.NeatUpload\Brettle.Web.NeatUpload\UploadHttpModule.cs:行号 559</Line>
+      <Line>在 System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()</Line>
+      <Line>在 System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)</Line>
+      <Line>在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)</Line>
+    </StackTrace>
+  </Exception>
+  <Exception Time="2019-03-29 18:20:42.4317334" Type="System.Data.SqlClient.SqlException">
+    <ClientIP>127.0.0.1</ClientIP>
+    <ClientUA>Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0</ClientUA>
+    <ExactURL>http://localhost:63061/EZGoal/neatupload.aspx</ExactURL>
+    <Message>
+      <Line>将 numeric 转换为数据类型 numeric 时出现算术溢出错误。</Line>
+      <Line>语句已终止。</Line>
+    </Message>
+    <Source>.Net SqlClient Data Provider</Source>
+    <StackTrace>
+      <Line>在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)</Line>
+      <Line>在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)</Line>
+      <Line>在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)</Line>
+      <Line>在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean&amp; dataReady)</Line>
+      <Line>在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)</Line>
+      <Line>在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task&amp; task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)</Line>
+      <Line>在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task&amp; task, Boolean&amp; usedCache, Boolean asyncWrite, Boolean inRetry)</Line>
+      <Line>在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean&amp; usedCache, Boolean asyncWrite, Boolean inRetry)</Line>
+      <Line>在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()</Line>
+      <Line>在 Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteNonQuery(SqlConnection connection, CommandType commandType, String commandText, SqlParameter[] commandParameters) 位置 e:\ASP.NET Workspace\EZGoal\App_Code\_SQLHelper.cs:行号 335</Line>
+      <Line>在 EZGoal.Log.Write() 位置 e:\ASP.NET Workspace\EZGoal\App_Code\Log.cs:行号 131</Line>
+      <Line>在 ASP.global_asax.Application_EndRequest(Object sender, EventArgs e) 位置 e:\ASP.NET Workspace\EZGoal\Global.asax:行号 49</Line>
+    </StackTrace>
+  </Exception>
+</Log>

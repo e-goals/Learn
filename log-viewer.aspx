@@ -10,6 +10,7 @@
 <body>
   <form id="_form" runat="server">
     <div>
+      <span style="display: block;"><%= "<a href='./log/" + System.DateTime.Now.ToString("yyyy-MM/yyyyMMdd") + ".log.xml'> >>>查看错误日志<<<</a>" %></span>
       <asp:GridView ID="GridView1" AutoGenerateColumns="false" runat="server" Width="100%">
         <Columns>
           <asp:TemplateField HeaderText="#" HeaderStyle-Width="30px">
